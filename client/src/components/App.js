@@ -2,9 +2,9 @@ import React from 'react';
 import { Router, Route } from 'react-router-dom';
 import history from '../history';
 import Header from './Header';
-import Home from './Home';
-import Stocks from './Stocks';
-import Portfolio from './Portfolio';
+import Home from './stocks/Home';
+import Stocks from './stocks/Stocks';
+import Portfolio from './stocks/Portfolio';
 class App extends React.Component {
     render() {
         return (

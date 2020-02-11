@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateRoute } from '../actions';
+import { updateRoute } from '../../actions';
 class Stocks extends React.Component {
     componentDidMount() {
         this.props.updateRoute(this.props.location.pathname);
