@@ -4,7 +4,7 @@ exports.up = function(knex) {
 			.increments('id')
 			.primary()
 			.unsigned()
-		table.integer('user_id')
+		table.string('user_id')
 		table.integer('stock_id')
 		table.integer('quantity')
 		table.timestamp('created_at').defaultTo(knex.fn.now())
