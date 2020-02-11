@@ -10,6 +10,10 @@ const getUser = async (req, res) => {
 		res.send(user)
 	} catch (err) {
 		console.log(err)
+		res.status(500).send({
+			message: 'Error in getUser function',
+			error: err,
+		})
 	}
 }
 
