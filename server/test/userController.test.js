@@ -7,7 +7,7 @@ beforeAll(async done => {
 })
 
 describe('User Controller Test', () => {
-	it('can get user', () => {
-		const data = {}
-	})
+	it('can get user', () => {})
 })
+
+//Wait until know the result getting form SQL
