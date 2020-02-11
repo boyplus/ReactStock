@@ -4,9 +4,10 @@ const getUser = async (req, res) => {
 	try {
 		const user = await knex
 			.select('*')
-			.from('users')
-			.innerJoin('stocks_owned', 'users.id', 'stocks_owned.user_id')
-			.where('users.id', '1')
+			.from('stocks_owned')
+			.innerJoin('users', 'users.id', 'stocks_owned.user_id')
+			.innerJoin('stocks', 'stocks_owned.stock_id', 'stocks.id')
+			.where('users.id', '2')
 		res.send(user)
 	} catch (err) {
 		console.log(err)
