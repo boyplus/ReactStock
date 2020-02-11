@@ -4,6 +4,7 @@ exports.up = function(knex) {
 			.increments('id')
 			.primary()
 			.unsigned()
+		table.string('name')
 		table.string('email')
 		table.decimal('fund', 19, 2)
 	})
