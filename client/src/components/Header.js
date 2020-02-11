@@ -2,13 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import GoogleAuth from './GoogleAuth';
-import ProfileCard from './ProfileCard';
+import ProfileHeader from './stocks/ProfileHeader';
 class Header extends React.Component {
     getClassName = className => {
         if ('/' + className.toLowerCase() === this.props.route) {
             return 'item active';
         } else {
             return 'item';
+        }
+    };
+    renderProfileHeader = () => {
+        if (this.props.profile) {
+            return (
+                <ProfileHeader
+                    imageUrl={this.props.profile.imageUrl}
+                ></ProfileHeader>
+            );
         }
     };
     render() {
@@ -33,13 +42,7 @@ class Header extends React.Component {
                             alignItems: 'center'
                         }}
                     >
-                        <img
-                            class="ui rounded image"
-                            height="35px"
-                            width="auto"
-                            style={{ marginRight: '7px' }}
-                            src="https://lh3.googleusercontent.com/a-/AAuE7mCLJxtAd-8dQVZLLPvBDSGHh8YRN6OFoujJdDn87m4=s96-c"
-                        ></img>
+                        {this.renderProfileHeader()}
                         <GoogleAuth></GoogleAuth>
                     </div>
                 </div>
@@ -49,6 +52,9 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return { route: state.route.route };
+    return {
+        route: state.route.route,
+        profile: state.auth.profile
+    };
 };
 export default connect(mapStateToProps)(Header);
