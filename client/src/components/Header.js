@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import GoogleAuth from './GoogleAuth';
 import ProfileHeader from './stocks/ProfileHeader';
+import './HeaderStyle.css';
 class Header extends React.Component {
     getClassName = className => {
         if ('/' + className.toLowerCase() === this.props.route) {
@@ -14,15 +15,17 @@ class Header extends React.Component {
     renderProfileHeader = () => {
         if (this.props.profile) {
             return (
-                <ProfileHeader
-                    imageUrl={this.props.profile.imageUrl}
-                ></ProfileHeader>
+                <div className="myHeader">
+                    <ProfileHeader
+                        imageUrl={this.props.profile.imageUrl}
+                    ></ProfileHeader>
+                </div>
             );
         }
     };
     render() {
         return (
-            <div className="ui pointing menu">
+            <div className="ui stackable container menu">
                 <Link to="/" className={this.getClassName('')}>
                     Home
                 </Link>

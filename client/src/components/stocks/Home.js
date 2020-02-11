@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { updateRoute } from '../../actions';
-import ProfileCard from './ProfileCard';
 class Home extends React.Component {
     componentDidMount() {
         this.props.updateRoute(this.props.location.pathname);
