@@ -22,7 +22,8 @@ class GoogleAuth extends React.Component {
             const entireProfile = this.auth.currentUser.get().getBasicProfile();
             const profile = {
                 name: entireProfile.getName(),
-                email: entireProfile.getEmail()
+                email: entireProfile.getEmail(),
+                imageUrl: entireProfile.getImageUrl()
             };
             this.props.signIn(this.auth.currentUser.get().getId());
             this.props.updateProfile(profile);
