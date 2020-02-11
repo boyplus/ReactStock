@@ -5,7 +5,7 @@ exports.up = function(knex) {
 			.primary()
 			.unsigned()
 		table.string('email')
-		table.decimal('fund', 19, 2).defaultTo(50000)
+		table.decimal('fund', 19, 2)
 	})
 }
 

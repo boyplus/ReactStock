@@ -6,6 +6,8 @@ exports.up = function(knex) {
 			.unsigned()
 		table.integer('user_id')
 		table.integer('stock_id')
+		table.integer('quantity')
+		table.timestamp('created_at').defaultTo(knex.fn.now())
 		table.foreign('user_id').references('users.id')
 		table.foreign('stock_id').references('stocks.id')
 	})
