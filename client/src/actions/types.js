@@ -5,3 +5,4 @@ export const FETCH_PROFILE = 'FETCH_PROFILE';
 export const UPDATE_ROUTE = 'UPDATE_ROUTE';
 export const UPDATE_MONEY = 'UPDATE_MONEY';
 export const FETCH_USER = 'FETCH_USER';
+export const FETCH_STOCKS = 'FETCH_STOCKS';

@@ -7,9 +7,9 @@ import './HeaderStyle.css';
 class Header extends React.Component {
     getClassName = className => {
         if ('/' + className.toLowerCase() === this.props.route) {
-            return 'item active';
+            return 'active';
         } else {
-            return 'item';
+            return '';
         }
     };
     renderProfileHeader = () => {
@@ -26,31 +26,32 @@ class Header extends React.Component {
     renderMoney = () => {
         if (this.props.profile) {
             return (
-                <div className="myHeader" style={{ marginRight: '20px' }}>
+                <div
+                    className="myHeader"
+                    style={{ marginRight: '20px', color: 'rgb(0, 44, 86)' }}
+                >
                     {this.props.user.money}
                 </div>
             );
         }
     };
-    renderRightMenu = () => {};
     render() {
         return (
             <div className="nav">
                 <div className="leftMenu">
-                    <Link to="/" className="myLink">
+                    <Link to="/" className={`myLink ${this.getClassName('')}`}>
                         Home
                     </Link>
-                    <Link to="/stocks" className="myLink">
+                    <Link to="/stocks" className={`myLink ${this.getClassName('')}`}>
                         Stocks
                     </Link>
-                    <Link to="/portfolio" className="myLink">
+                    <Link to="/portfolio" className={`myLink ${this.getClassName('')}`}>
                         Portfolio
                     </Link>
                 </div>
 
                 <div className="rightMenu">
                     {this.renderMoney()}
-                    {this.renderRightMenu()}
                     <div className="rightButton">
                         {this.renderProfileHeader()}
                         <Link

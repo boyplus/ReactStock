@@ -1,41 +1,53 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import history from '../../history';
-import { updateRoute } from '../../actions';
+import { updateRoute, fetchStocks } from '../../actions';
 import Stock from './Stock';
 class Stocks extends React.Component {
     componentDidMount() {
         if (this.props.profile) {
             this.props.updateRoute(this.props.location.pathname);
+            this.props.fetchStocks();
         } else {
             history.push('/');
         }
     }
-    renderStocks = () => {
+    renderListStocks = stocks => {
         return (
             <div
                 className="ui cards"
                 style={{ display: 'flex', justifyContent: 'center' }}
             >
-                <Stock title="facebook" description="hello"></Stock>
-                <Stock title="facebook" description="hello"></Stock>
-                <Stock title="facebook" description="hello"></Stock>
-                <Stock title="facebook" description="hello"></Stock>
-                <Stock title="facebook" description="hello"></Stock>
+                {this.renderStocks(stocks)}
             </div>
         );
+    };
+    renderStocks = stocks => {
+        const allStocks = stocks.map(stock => {
+            return (
+                <Stock
+                    title={stock.name}
+                    description={"$ "+stock.price}
+                    key={stock.id}
+                />
+            );
+        });
+        return allStocks;
     };
     render() {
         return (
             <div>
                 <div className="ui header">Stocks list</div>
-                {this.renderStocks()}
+                {this.renderListStocks(this.props.stocks)}
             </div>
         );
     }
 }
 
 const mapStateToProps = state => {
-    return { profile: state.auth.profile };
+    return {
+        profile: state.auth.profile,
+        stocks: state.stocks
+    };
 };
-export default connect(mapStateToProps, { updateRoute })(Stocks);
+export default connect(mapStateToProps, { updateRoute, fetchStocks })(Stocks);
