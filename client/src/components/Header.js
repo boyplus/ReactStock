@@ -23,7 +23,17 @@ class Header extends React.Component {
             );
         }
     };
+    renderMoney = () => {
+        if (this.props.profile) {
+            return (
+                <div style={{ marginRight: '10px' }}>
+                    {this.props.user.money}
+                </div>
+            );
+        }
+    };
     render() {
+        console.log(this.props.user);
         return (
             <div className="ui stackable container menu">
                 <Link to="/" className={this.getClassName('')}>
@@ -45,6 +55,7 @@ class Header extends React.Component {
                             alignItems: 'center'
                         }}
                     >
+                        {this.renderMoney()}
                         {this.renderProfileHeader()}
                         <GoogleAuth></GoogleAuth>
                     </div>
@@ -57,7 +68,8 @@ class Header extends React.Component {
 const mapStateToProps = state => {
     return {
         route: state.route.route,
-        profile: state.auth.profile
+        profile: state.auth.profile,
+        user: state.profile
     };
 };
 export default connect(mapStateToProps)(Header);

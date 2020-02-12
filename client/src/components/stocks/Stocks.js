@@ -1,10 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import history from '../../history';
 import { updateRoute } from '../../actions';
 class Stocks extends React.Component {
     componentDidMount() {
-        this.props.updateRoute(this.props.location.pathname);
+        if (this.props.profile) {
+            this.props.updateRoute(this.props.location.pathname);
+        } else {
+            history.push('/');
+        }
     }
+    renderStocks() {}
     render() {
         return (
             <div>
@@ -14,4 +20,7 @@ class Stocks extends React.Component {
     }
 }
 
-export default connect(null, { updateRoute })(Stocks);
+const mapStateToProps = state => {
+    return { profile: state.auth.profile };
+};
+export default connect(mapStateToProps, { updateRoute })(Stocks);

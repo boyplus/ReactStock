@@ -2,7 +2,7 @@ import { SIGN_IN, SIGN_OUT, UPDATE_PROFILE, FETCH_PROFILE } from '../actions/typ
 const INITIAL_STATE = {
     isSignedIn: null,
     userId: null,
-    profile: null
+    profile: null,
 };
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {

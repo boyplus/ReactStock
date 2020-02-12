@@ -1,9 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import history from '../../history';
 import { updateRoute } from '../../actions';
 class Portfolio extends React.Component {
     componentDidMount() {
-        this.props.updateRoute(this.props.location.pathname);
+        if (this.props.profile) {
+            this.props.updateRoute(this.props.location.pathname);
+        } else {
+            history.push('/');
+        }
     }
     render() {
         return (
@@ -12,6 +17,9 @@ class Portfolio extends React.Component {
             </div>
         );
     }
-};
+}
 
-export default connect(null, { updateRoute })(Portfolio);
+const mapStateToProps = state => {
+    return { state: state.auth.profile };
+};
+export default connect(mapStateToProps, { updateRoute })(Portfolio);
