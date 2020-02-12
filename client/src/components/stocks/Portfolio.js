@@ -20,6 +20,6 @@ class Portfolio extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return { state: state.auth.profile };
+    return { profile: state.auth.profile };
 };
 export default connect(mapStateToProps, { updateRoute })(Portfolio);

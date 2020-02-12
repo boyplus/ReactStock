@@ -26,38 +26,40 @@ class Header extends React.Component {
     renderMoney = () => {
         if (this.props.profile) {
             return (
-                <div style={{ marginRight: '10px' }}>
+                <div className="myHeader" style={{ marginRight: '20px' }}>
                     {this.props.user.money}
                 </div>
             );
         }
     };
+    renderRightMenu = () => {};
     render() {
-        console.log(this.props.user);
         return (
-            <div className="ui stackable container menu">
-                <Link to="/" className={this.getClassName('')}>
-                    Home
-                </Link>
-                <Link to="/stocks" className={this.getClassName('stocks')}>
-                    Stocks
-                </Link>
-                <Link
-                    to="/portfolio"
-                    className={this.getClassName('portfolio')}
-                >
-                    Portfolio
-                </Link>
-                <div className="right menu">
-                    <div
-                        style={{
-                            display: 'flex',
-                            alignItems: 'center'
-                        }}
-                    >
-                        {this.renderMoney()}
+            <div className="nav">
+                <div className="leftMenu">
+                    <Link to="/" className="myLink">
+                        Home
+                    </Link>
+                    <Link to="/stocks" className="myLink">
+                        Stocks
+                    </Link>
+                    <Link to="/portfolio" className="myLink">
+                        Portfolio
+                    </Link>
+                </div>
+
+                <div className="rightMenu">
+                    {this.renderMoney()}
+                    {this.renderRightMenu()}
+                    <div className="rightButton">
                         {this.renderProfileHeader()}
-                        <GoogleAuth></GoogleAuth>
+                        <Link
+                            to="/"
+                            className="myLink"
+                            style={{ padding: '15px' }}
+                        >
+                            <GoogleAuth></GoogleAuth>
+                        </Link>
                     </div>
                 </div>
             </div>
