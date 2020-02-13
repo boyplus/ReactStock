@@ -18,7 +18,7 @@ router.get(
 	}),
 	(req, res) => {
 		console.log(req.user)
-		res.redirect('/api/user')
+		res.redirect('http://localhost:3000/')
 	}
 )
 

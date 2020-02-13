@@ -9,19 +9,27 @@ const app = require('../src/app')
 // 	// done()
 // })
 
+// let server, agent
+
+// beforeEach(done => {
+// 	server = app.listen(4000, err => {
+// 		if (err) return done(err)
+
+// 		agent = request.agent(server) // since the application is already listening, it should use the allocated port
+// 		done()
+// 	})
+// })
+
+// afterEach(done => {
+// 	return server && server.close(done)
+// })
+
 describe('User Controller Test', () => {
-	it('can get user', function(done) {
+	it('can get user', done => {
 		request(app)
 			.get('/api/user')
-			.expect(200)
-			.end(function(err, res) {
-				if (err) return done(err)
-				done()
-			})
-		// .end()
-		// expect(body[0].id).toBe(1)
-		// console.log(res.body)
-		// expect(res.body[0].fund).toBe(100000)
-		// done()
+			// .send({})
+			.end(done)
+		// expect(typeof res).toBe('object')
 	})
 })
