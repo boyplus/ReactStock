@@ -1,4 +1,10 @@
-.modal{
+@media screen and (max-width: 767px) {
+    .content {
+        width: 220px !important;
+        background-color: teal !important;
+    }
+}
+.modal {
     width: 100vw;
     height: 100vh;
     left: 0;
@@ -6,10 +12,10 @@
     position: absolute;
     display: flex;
     justify-content: flex-end;
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(0, 0, 0, 0.4);
 }
-.content{
-    width: 200px;
+.content {
+    width: 25%;
     height: 100vh;
-    background-color: grey;
+    background-color: whitesmoke;
 }

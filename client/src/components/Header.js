@@ -35,8 +35,13 @@ class Header extends React.Component {
     };
     renderModal = () => {
         if (this.state.showModal) {
-            console.log('hello modal');
-            return <Modal onDisMiss={() => history.push('/')}></Modal>;
+            return (
+                <Modal
+                    onDisMiss={() =>
+                        this.setState({ showModal: !this.state.showModal })
+                    }
+                ></Modal>
+            );
         } else {
             return null;
         }
@@ -46,12 +51,11 @@ class Header extends React.Component {
         this.state = { showModal: false };
     }
     render() {
-        console.log(this.state);
         return (
             <div className="container">
                 <div className="smallNav">
                     <Hamburger
-                        onmyClick={() =>
+                        onClick={() =>
                             this.setState({ showModal: !this.state.showModal })
                         }
                     ></Hamburger>
