@@ -1,12 +1,31 @@
 @media screen and (max-width: 767px) {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
     .myHeader {
         display: none;
+    }
+    .largeNav {
+        display: none;
+    }
+    .smallNav {
+        color: black !important;
+        margin: 20px 0px;
+        height: 49px;
+        display: flex !important;
+        justify-content: flex-end;
+        align-items: center;
     }
 }
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+.smallNav {
+    display: none;
 }
 .nav {
     margin: 20px 0px;
@@ -39,4 +58,8 @@
 .myLink:hover {
     transition: 500ms;
     color: rgb(0, 44, 86);
+}
+.active {
+    transition: 500;
+    color: rgb(0, 21, 61);
 }

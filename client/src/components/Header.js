@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import GoogleAuth from './GoogleAuth';
 import ProfileHeader from './stocks/ProfileHeader';
+import Hamburger from './Hamburger';
 import './HeaderStyle.css';
 class Header extends React.Component {
     getClassName = className => {
@@ -37,30 +38,50 @@ class Header extends React.Component {
     };
     render() {
         return (
-            <div className="nav">
-                <div className="leftMenu">
-                    <Link to="/" className={`myLink ${this.getClassName('')}`}>
-                        Home
-                    </Link>
-                    <Link to="/stocks" className={`myLink ${this.getClassName('')}`}>
-                        Stocks
-                    </Link>
-                    <Link to="/portfolio" className={`myLink ${this.getClassName('')}`}>
-                        Portfolio
-                    </Link>
+            <div className="container">
+                <div className="smallNav">
+                    <Hamburger></Hamburger>
                 </div>
+                <div className="largeNav">
+                    <div className="nav">
+                        <div className="leftMenu">
+                            <Link
+                                to="/"
+                                className={`myLink ${this.getClassName('')}`}
+                            >
+                                Home
+                            </Link>
+                            <Link
+                                to="/stocks"
+                                className={`myLink ${this.getClassName(
+                                    'stocks'
+                                )}`}
+                            >
+                                Stocks
+                            </Link>
+                            <Link
+                                to="/portfolio"
+                                className={`myLink ${this.getClassName(
+                                    'portfolio'
+                                )}`}
+                            >
+                                Portfolio
+                            </Link>
+                        </div>
 
-                <div className="rightMenu">
-                    {this.renderMoney()}
-                    <div className="rightButton">
-                        {this.renderProfileHeader()}
-                        <Link
-                            to="/"
-                            className="myLink"
-                            style={{ padding: '15px' }}
-                        >
-                            <GoogleAuth></GoogleAuth>
-                        </Link>
+                        <div className="rightMenu">
+                            {this.renderMoney()}
+                            <div className="rightButton">
+                                {this.renderProfileHeader()}
+                                <Link
+                                    to="/"
+                                    className="myLink"
+                                    style={{ padding: '15px' }}
+                                >
+                                    <GoogleAuth></GoogleAuth>
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
