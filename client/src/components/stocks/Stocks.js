@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import history from '../../history';
 import { updateRoute, fetchStocks } from '../../actions';
 import Stock from './Stock';
+import './stocksStyle.css'
 class Stocks extends React.Component {
     componentDidMount() {
         if (this.props.profile) {
@@ -14,10 +15,7 @@ class Stocks extends React.Component {
     }
     renderListStocks = stocks => {
         return (
-            <div
-                className="ui cards"
-                style={{ display: 'flex', justifyContent: 'center' }}
-            >
+            <div className="listCards">
                 {this.renderStocks(stocks)}
             </div>
         );
@@ -27,7 +25,7 @@ class Stocks extends React.Component {
             return (
                 <Stock
                     title={stock.name}
-                    description={"$ "+stock.price}
+                    description={'$ ' + stock.price}
                     key={stock.id}
                 />
             );

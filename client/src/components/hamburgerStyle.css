@@ -1,0 +1,10 @@
+.menu{
+    display: flex;
+    align-items: center;
+    background-color: whitesmoke;
+    border-radius: 5px 5px;
+    padding: 5px;
+}
+img{
+    cursor: pointer;
+}

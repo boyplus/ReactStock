@@ -4,13 +4,15 @@ import { connect } from 'react-redux';
 import GoogleAuth from './GoogleAuth';
 import ProfileHeader from './stocks/ProfileHeader';
 import Hamburger from './Hamburger';
+import history from '../history';
+import Modal from './Modal';
 import './HeaderStyle.css';
 class Header extends React.Component {
     getClassName = className => {
         if ('/' + className.toLowerCase() === this.props.route) {
-            return 'active';
+            return 'myLink active';
         } else {
-            return '';
+            return 'myLink';
         }
     };
     renderProfileHeader = () => {
@@ -27,43 +29,49 @@ class Header extends React.Component {
     renderMoney = () => {
         if (this.props.profile) {
             return (
-                <div
-                    className="myHeader"
-                    style={{ marginRight: '20px', color: 'rgb(0, 44, 86)' }}
-                >
-                    {this.props.user.money}
-                </div>
+                <div className="myHeader money">{this.props.user.money}</div>
             );
         }
     };
+    renderModal = () => {
+        if (this.state.showModal) {
+            console.log('hello modal');
+            return <Modal onDisMiss={() => history.push('/')}></Modal>;
+        } else {
+            return null;
+        }
+    };
+    constructor(props) {
+        super(props);
+        this.state = { showModal: false };
+    }
     render() {
+        console.log(this.state);
         return (
             <div className="container">
                 <div className="smallNav">
-                    <Hamburger></Hamburger>
+                    <Hamburger
+                        onmyClick={() =>
+                            this.setState({ showModal: !this.state.showModal })
+                        }
+                    ></Hamburger>
+                    {this.renderModal()}
                 </div>
                 <div className="largeNav">
                     <div className="nav">
                         <div className="leftMenu">
-                            <Link
-                                to="/"
-                                className={`myLink ${this.getClassName('')}`}
-                            >
+                            <Link to="/" className={this.getClassName('')}>
                                 Home
                             </Link>
                             <Link
                                 to="/stocks"
-                                className={`myLink ${this.getClassName(
-                                    'stocks'
-                                )}`}
+                                className={this.getClassName('stocks')}
                             >
                                 Stocks
                             </Link>
                             <Link
                                 to="/portfolio"
-                                className={`myLink ${this.getClassName(
-                                    'portfolio'
-                                )}`}
+                                className={this.getClassName('portfolio')}
                             >
                                 Portfolio
                             </Link>
