@@ -1,18 +1,31 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@media screen and (max-width: 991px) {
+    .card {
+        width: 40% !important;
+        flex-wrap: wrap !important;
+    }
+}
 @media screen and (max-width: 767px) {
     .card {
         width: 80% !important;
+        flex-wrap: wrap !important;
     }
 }
 .card {
     background-color: whitesmoke;
     padding: 20px;
     margin: 20px;
-    width: 340px;
+    width: 30%;
     height: 150px;
     border-radius: 10px 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 .button {
     display: flex;
