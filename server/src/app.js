@@ -3,7 +3,7 @@ const cors = require('cors')
 const session = require('express-session')
 const passport = require('passport')
 const bodyParser = require('body-parser')
-// const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser')
 const userRouter = require('./routes/user')
 const stockRouter = require('./routes/stock')
 const authRouter = require('./routes/auth')
@@ -21,7 +21,7 @@ passport.deserializeUser(function(obj, cb) {
 
 app.use(cors())
 app.use(bodyParser.json())
-// app.use(cookieParser)
+app.use(cookieParser())
 app.use(
 	session({
 		// store: new RedisStore({ client: redisClient }),
