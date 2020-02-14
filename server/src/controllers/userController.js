@@ -6,7 +6,9 @@ const getUser = async (req, res) => {
 			.select('name', 'email', 'fund')
 			.from('users')
 			.where('id', '1')
-		res.send(user)
+		if (user.length == 0)
+			return res.status(404).send({ err: 'User not found' })
+		res.send(user[0])
 	} catch (err) {
 		console.log(err)
 		res.status(500).send({

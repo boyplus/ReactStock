@@ -1,5 +1,6 @@
 const passport = require('passport')
 const FacebookStrategy = require('passport-facebook').Strategy
+const knex = require('../../db/knex')
 
 passport.use(
 	new FacebookStrategy(
@@ -9,7 +10,8 @@ passport.use(
 			callbackURL: '/api/login/facebook/return',
 			profileFields: ['id', 'displayName', 'email'],
 		},
-		function(accessToken, refreshToken, profile, done) {
+		async function(accessToken, refreshToken, profile, done) {
+			const user = await knex('users')
 			return done(null, profile)
 		}
 	)
