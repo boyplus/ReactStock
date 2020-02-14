@@ -1,35 +1,37 @@
 const request = require('supertest')
 const app = require('../src/app')
-// const knex = require('../db/knex')
+const knex = require('../db/knex')
 
-// beforeAll(async () => {
-// 	await knex.migrate.rollback()
-// 	await knex.migrate.latest()
-// 	await knex.seed.run()
-// 	// done()
-// })
+beforeEach(async () => {
+	await knex.migrate.latest()
+	await knex.seed.run()
+	// done()
+})
 
-// let server, agent
-
-// beforeEach(done => {
-// 	server = app.listen(4000, err => {
-// 		if (err) return done(err)
-
-// 		agent = request.agent(server) // since the application is already listening, it should use the allocated port
-// 		done()
-// 	})
-// })
-
-// afterEach(done => {
-// 	return server && server.close(done)
-// })
+afterEach(async () => {
+	await knex.migrate.down()
+})
 
 describe('User Controller Test', () => {
-	it('can get user', done => {
-		request(app)
-			.get('/api/user')
-			// .send({})
-			.end(done)
-		// expect(typeof res).toBe('object')
+	it('can get user', async () => {
+		const expected = {
+			name: 'Sethanant',
+			email: 'example1@mail.com',
+			fund: 100000,
+		}
+		const res = await request(app).get('/api/user')
+		expect(res.body[0]).toMatchObject(expected)
+	})
+
+	it.only(`can get user's port folio`, async () => {
+		const expected = {
+			quantity: 10,
+			name: 'Google',
+			price: 100,
+		}
+
+		// const res = await request(app).get('/api/portfolio')
+		// console.log(res.body)
+		// expect(res.body[0]).toMatchObject(expected)
 	})
 })

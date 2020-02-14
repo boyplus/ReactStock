@@ -1,5 +1,22 @@
 const knex = require('../../db/knex')
 
+const addNewStock = async (req, res) => {
+	try {
+		// {
+		// 	name: 'StockName',
+		// 	price: 10.0
+		// }
+		await knex('stocks').insert(req.body)
+		res.status(201).send()
+	} catch (err) {
+		console.log(err)
+		res.status(500).send({
+			message: 'Error in addNewStock function',
+			error: err,
+		})
+	}
+}
+
 const getAllStocks = async (req, res) => {
 	try {
 		const stocks = await knex.select('*').from('stocks')
@@ -15,4 +32,5 @@ const getAllStocks = async (req, res) => {
 
 module.exports = {
 	getAllStocks,
+	addNewStock,
 }
