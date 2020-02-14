@@ -1,5 +1,5 @@
 const express = require('express')
-// const ensureLogin = require('connect-ensure-login')
+const ensureLogin = require('connect-ensure-login')
 const userController = require('../controllers/userController')
 const checkAuth = require('../auth/checkAuth')
 require('dotenv').config()

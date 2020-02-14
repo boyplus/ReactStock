@@ -9,7 +9,7 @@ const router = new express.Router()
 router.get(
 	'/api/transaction',
 	// ensureLogin.ensureLoggedIn(process.env.CLIENT_URL),
-	checkAuth,
+	// checkAuth,
 	transactionController.getUserTransactions
 )
 
