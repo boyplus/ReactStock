@@ -73,14 +73,22 @@ const buyStock = async (req, res) => {
 		if (result.err) return res.status(404).send(result)
 
 		const existingStock = await knex('stocks')
-			.select('id')
+			.select('id', 'quantity')
 			.where('id', req.body.stockID)
 		if (existingStock.length == 0) {
 			await knex('stocks_owned').insert(orderProp)
 		} else {
-			await knex('stocks_owned').update
+			await knex('stocks_owned')
+				.update(
+					'quantity',
+					existingStock[0].quantity + orderProp.quantity
+				)
+				.where({
+					user_id: orderProp.user_id,
+					stock_id: orderProp.stock_id,
+				})
 		}
-		res.send({ success: true })
+		res.status(200).send({ success: true })
 	} catch (err) {
 		console.log(err)
 		res.status(500).send({
@@ -94,4 +102,5 @@ module.exports = {
 	getAllStocks,
 	addNewStock,
 	getStock,
+	buyStock,
 }
