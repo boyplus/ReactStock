@@ -2,7 +2,7 @@ const knex = require('../../db/knex')
 
 const getUser = async (req, res) => {
 	try {
-		if (!req.user) return res.status(401).send({ err: 'Please login' })
+		// if (!req.user) return res.status(401).send({ err: 'Please login' })
 		const user = await knex
 			.select('*')
 			.from('users')

@@ -13,11 +13,11 @@ router.get(
 	'/api/auth/facebook/return',
 	passport.authenticate('facebook', {
 		session: true,
-		failureRedirect: '/',
+		failureRedirect: process.env.CLIENT_URL,
 	}),
 	(req, res) => {
 		console.log(req.user)
-		res.redirect('http://localhost:3000')
+		res.redirect(process.env.CLIENT_URL)
 	}
 )
 
