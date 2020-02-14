@@ -37,7 +37,7 @@ const getStock = async (req, res) => {
 		}
 		res.send(result)
 	} catch (err) {
-		onsole.log(err)
+		console.log(err)
 		res.status(500).send({
 			message: 'Error in getStock function',
 			error: err,
@@ -83,7 +83,7 @@ const buyStock = async (req, res) => {
 					stock_id: orderProp.stock_id,
 				})
 		}
-		res.status(200).send({ success: true })
+		return res.status(200).send({ success: true })
 	} catch (err) {
 		console.log(err)
 		res.status(500).send({

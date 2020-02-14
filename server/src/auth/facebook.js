@@ -11,7 +11,7 @@ passport.use(
 			callbackURL: '/api/auth/facebook/return',
 			profileFields: ['id', 'displayName', 'email'],
 		},
-		async function(accessToken, refreshToken, profile, done) {
+		async (accessToken, refreshToken, profile, done) => {
 			const user = await knex('users')
 				.select('*')
 				.where('id', profile.id)
