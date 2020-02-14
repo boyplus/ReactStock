@@ -1,5 +1,17 @@
 const knex = require('../../db/knex')
 
+const findStock = async stockID => {
+	try {
+		const stock = await knex('stocks')
+			.select('*')
+			.where('id', stockID)
+		if (stock.length == 0) return { err: 'Not found' }
+		return stock[0]
+	} catch (err) {
+		return err
+	}
+}
+
 const addNewStock = async (req, res) => {
 	try {
 		// {
@@ -17,14 +29,21 @@ const addNewStock = async (req, res) => {
 	}
 }
 
-// const getStock = async (req, res) => {
-// 	try {
-// 		const stockProp = req.body
-// 		const stock = await knex('stocks')
-// 			.select('name', 'price')
-// 			.where()
-// 	} catch (err) {}
-// }
+const getStock = async (req, res) => {
+	try {
+		const result = await findStock(req.body.stockID)
+		if (result.err) {
+			res.status(404)
+		}
+		res.send(result)
+	} catch (err) {
+		onsole.log(err)
+		res.status(500).send({
+			message: 'Error in getStock function',
+			error: err,
+		})
+	}
+}
 
 const getAllStocks = async (req, res) => {
 	try {
@@ -33,7 +52,39 @@ const getAllStocks = async (req, res) => {
 	} catch (err) {
 		console.log(err)
 		res.status(500).send({
-			message: 'Error in getUser function',
+			message: 'Error in getAllStocks function',
+			error: err,
+		})
+	}
+}
+
+const buyStock = async (req, res) => {
+	try {
+		// {
+		// 	stockID: 1,
+		// 	quantity: 10
+		// }
+		const orderProp = {
+			user_id: req.user.id,
+			stock_id: res.body.stockID,
+			quantity: res.body.quantity,
+		}
+		const result = await findStock(req.body.stockID)
+		if (result.err) return res.status(404).send(result)
+
+		const existingStock = await knex('stocks')
+			.select('id')
+			.where('id', req.body.stockID)
+		if (existingStock.length == 0) {
+			await knex('stocks_owned').insert(orderProp)
+		} else {
+			await knex('stocks_owned').update
+		}
+		res.send({ success: true })
+	} catch (err) {
+		console.log(err)
+		res.status(500).send({
+			message: 'Error in buyStock function',
 			error: err,
 		})
 	}
@@ -42,4 +93,5 @@ const getAllStocks = async (req, res) => {
 module.exports = {
 	getAllStocks,
 	addNewStock,
+	getStock,
 }

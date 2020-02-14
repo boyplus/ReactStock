@@ -28,7 +28,7 @@ app.use(
 		secret: 'foobar',
 		resave: true,
 		saveUninitialized: true,
-		// cookie: { maxAge: 10000 },
+		cookie: { maxAge: 3600000 },
 	})
 )
 app.use(passport.initialize())

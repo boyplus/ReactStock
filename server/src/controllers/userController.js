@@ -2,7 +2,6 @@ const knex = require('../../db/knex')
 
 const getUser = async (req, res) => {
 	try {
-		// if (!req.user) return res.status(401).send({ err: 'Please login' })
 		const user = await knex
 			.select('*')
 			.from('users')
@@ -31,7 +30,18 @@ const getPortfolio = async (req, res) => {
 	} catch (err) {
 		console.log(err)
 		res.status(500).send({
-			message: 'Error in getUser function',
+			message: 'Error in getPortfolio function',
+			error: err,
+		})
+	}
+}
+
+const buyStock = async (req, res) => {
+	try {
+	} catch (err) {
+		console.log(err)
+		res.status(500).send({
+			message: 'Error in buyStock function',
 			error: err,
 		})
 	}
