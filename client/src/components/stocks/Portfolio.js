@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import history from '../../history';
-import { updateRoute } from '../../actions';
+import { updateRoute, fetchPortfolio } from '../../actions';
 class Portfolio extends React.Component {
     componentDidMount() {
         if (this.props.profile) {
             this.props.updateRoute(this.props.location.pathname);
+            console.log(this.props);
         } else {
             history.push('/');
         }
@@ -22,4 +23,6 @@ class Portfolio extends React.Component {
 const mapStateToProps = state => {
     return { profile: state.auth.profile };
 };
-export default connect(mapStateToProps, { updateRoute })(Portfolio);
+export default connect(mapStateToProps, { updateRoute, fetchPortfolio })(
+    Portfolio
+);

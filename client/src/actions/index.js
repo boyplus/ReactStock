@@ -6,7 +6,8 @@ import {
     UPDATE_ROUTE,
     UPDATE_MONEY,
     FETCH_USER,
-    FETCH_STOCKS
+    FETCH_STOCKS,
+    FETCH_PORTFOLIO
 } from './types';
 import stocks from '../apis/index';
 export const signIn = userId => {
@@ -58,4 +59,10 @@ export const updateRoute = route => {
 export const fetchStocks = () => async dispatch => {
     const response = await stocks.get('/api/stocks');
     dispatch({ type: FETCH_STOCKS, payload: response.data });
+};
+
+export const fetchPortfolio = () => async dispatch => {
+    const response = await stocks.get('/api/portfolio');
+    console.log(response.data);
+    dispatch({ type: FETCH_PORTFOLIO, payload: response.data });
 };

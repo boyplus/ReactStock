@@ -4,9 +4,8 @@ import { connect } from 'react-redux';
 import GoogleAuth from './GoogleAuth';
 import ProfileHeader from './stocks/ProfileHeader';
 import Hamburger from './Hamburger';
-import history from '../history';
 import Modal from './Modal';
-import './HeaderStyle.css';
+import './style/HeaderStyle.css';
 class Header extends React.Component {
     getClassName = className => {
         if ('/' + className.toLowerCase() === this.props.route) {

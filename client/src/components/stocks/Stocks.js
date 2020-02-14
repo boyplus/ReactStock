@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import history from '../../history';
 import { updateRoute, fetchStocks } from '../../actions';
 import Stock from './Stock';
-import './stocksStyle.css'
+import './style/stocksStyle.css';
 class Stocks extends React.Component {
     componentDidMount() {
         if (this.props.profile) {
@@ -14,11 +14,7 @@ class Stocks extends React.Component {
         }
     }
     renderListStocks = stocks => {
-        return (
-            <div className="listCards">
-                {this.renderStocks(stocks)}
-            </div>
-        );
+        return <div className="listCards">{this.renderStocks(stocks)}</div>;
     };
     renderStocks = stocks => {
         const allStocks = stocks.map(stock => {
@@ -48,4 +44,7 @@ const mapStateToProps = state => {
         stocks: state.stocks
     };
 };
-export default connect(mapStateToProps, { updateRoute, fetchStocks })(Stocks);
+export default connect(mapStateToProps, {
+    updateRoute,
+    fetchStocks
+})(Stocks);

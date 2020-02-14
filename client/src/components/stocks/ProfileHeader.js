@@ -8,6 +8,7 @@ const ProfileHeader = props => {
             width="auto"
             style={{ marginRight: '7px' }}
             src={props.imageUrl}
+            alt="user"
         ></img>
     );
 };

@@ -1,5 +1,5 @@
-*{
-    margin:0;
+* {
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
@@ -26,6 +26,7 @@
     flex-direction: column;
     justify-content: space-between;
     flex-wrap: wrap;
+    box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.2);
 }
 .button {
     display: flex;
@@ -39,4 +40,24 @@
     cursor: pointer;
     border: none;
     color: white;
+    transition: 300ms;
+}
+.button:hover {
+    opacity: 0.75;
+    transition: 300ms;
+}
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.numberInput {
+    padding: 12px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 5px;
+    width: 100%;
+}
+.numberInput:focus {
+    outline: none;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import './stockStyle.css';
+import './style/stockStyle.css';
 class Stock extends React.Component {
     render() {
         return (
@@ -9,6 +9,7 @@ class Stock extends React.Component {
                     <div className="">{this.props.description}</div>
                 </div>
                 <div className="bottom">
+                    <input type="number" className="numberInput"></input>
                     <button className="button">Buy</button>
                 </div>
             </div>

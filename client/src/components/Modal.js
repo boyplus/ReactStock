@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
-import './modalStyle.css';
+import './style/modalStyle.css';
 const Modal = props => {
     return ReactDOM.createPortal(
         <div
