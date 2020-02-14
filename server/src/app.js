@@ -11,18 +11,18 @@ const transactionRouter = require('./routes/transactions')
 
 const app = express()
 
-passport.serializeUser(function(user, cb) {
+passport.serializeUser((user, cb) => {
 	cb(null, user)
 })
 
-passport.deserializeUser(function(obj, cb) {
+passport.deserializeUser((obj, cb) => {
 	cb(null, obj)
 })
 
 app.use(
 	cors({
 		origin: 'http://localhost:3000',
-		credentials: true
+		credentials: true,
 	})
 )
 app.use(bodyParser.json())

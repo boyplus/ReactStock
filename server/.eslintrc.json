@@ -28,12 +28,12 @@
 		"jest/no-identical-title": "error",
 		"jest/prefer-to-have-length": "warn",
 		"jest/valid-expect": "error",
-		"eqeqeq": "warn",
 		"camelcase": "warn",
 		"one-var": "off",
 		"no-underscore-dangle": "off",
 		"node/no-unpublished-require": "off",
 		"prefer-destructuring": "off",
-		"no-param-reassign": "warn"
+		"no-param-reassign": "warn",
+		"eqeqeq": "off"
 	}
 }

@@ -1,6 +1,6 @@
 const express = require('express')
 const stockController = require('../controllers/stockController')
-const checkAuth = require('../auth/checkAuth')
+// const checkAuth = require('../auth/checkAuth')
 
 const router = new express.Router()
 
