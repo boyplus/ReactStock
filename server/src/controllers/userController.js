@@ -26,7 +26,7 @@ const getPortfolio = async (req, res) => {
 			.from('stocks_owned')
 			.innerJoin('stocks', 'stocks.id', 'stocks_owned.stock_id')
 			.groupBy('stock_id')
-			.where('stocks_owned.user_id', '1')
+			.where('stocks_owned.user_id', req.user.id)
 		res.send(stockOwn)
 	} catch (err) {
 		console.log(err)

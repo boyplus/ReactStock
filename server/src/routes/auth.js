@@ -16,7 +16,6 @@ router.get(
 		failureRedirect: process.env.CLIENT_URL,
 	}),
 	(req, res) => {
-		console.log(req.user)
 		res.redirect(process.env.CLIENT_URL)
 	}
 )

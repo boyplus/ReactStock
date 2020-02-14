@@ -14,6 +14,11 @@ router.get(
 	ensureLogin.ensureLoggedIn(process.env.CLIENT_URL),
 	userController.getUser
 )
-router.get('/api/portfolio', userController.getPortfolio)
+
+router.get(
+	'/api/portfolio',
+	ensureLogin.ensureLoggedIn(process.env.CLIENT_URL),
+	userController.getPortfolio
+)
 
 module.exports = router

@@ -2,7 +2,7 @@ const knex = require('../../db/knex')
 
 const getUserTransactions = async (req, res) => {
 	try {
-		const userID = '1'
+		const userID = req.user.id
 		const transac = await knex('transactions')
 			.select(
 				'transactions.id',
