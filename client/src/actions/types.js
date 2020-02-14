@@ -7,3 +7,4 @@ export const UPDATE_MONEY = 'UPDATE_MONEY';
 export const FETCH_USER = 'FETCH_USER';
 export const FETCH_STOCKS = 'FETCH_STOCKS';
 export const FETCH_PORTFOLIO = 'FETCH_PORTFOLIO';
+export const FETCH_DATA = 'FETCH_DATA';

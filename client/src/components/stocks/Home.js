@@ -1,10 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { updateRoute } from '../../actions';
+import { Link } from 'react-router-dom';
 class Home extends React.Component {
     componentDidMount() {
         this.props.updateRoute(this.props.location.pathname);
     }
+    removeCookie = () => {
+        console.log(document.cookie);
+    };
     renderUser = () => {
         if (this.props.profile) {
             return (
@@ -21,6 +25,10 @@ class Home extends React.Component {
             <div>
                 <div className="ui header">Welcome to React Stock</div>
                 {this.renderUser()}
+                <a href="http://localhost:3030/api/auth/facebook">facebook</a>
+                <button className="ui button" onClick={this.removeCookie}>
+                    log out
+                </button>
             </div>
         );
     }

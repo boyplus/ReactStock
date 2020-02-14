@@ -7,20 +7,23 @@ import {
     UPDATE_MONEY,
     FETCH_USER,
     FETCH_STOCKS,
-    FETCH_PORTFOLIO
+    FETCH_PORTFOLIO,
+    FETCH_DATA
 } from './types';
 import stocks from '../apis/index';
-export const signIn = userId => {
+export const signIn = () => {
     return {
-        type: SIGN_IN,
-        payload: userId
-    };
+        type: SIGN_IN
+    }
 };
-
 export const signOut = () => {
     return {
         type: SIGN_OUT
     };
+};
+export const fetchData = () => async dispatch => {
+    const response = await stocks.get('/api/user', { withCredentials: true });
+    dispatch({ type: FETCH_DATA, payload: response.data });
 };
 
 export const updateProfile = profile => {
