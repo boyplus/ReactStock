@@ -1,20 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { signIn, signOut, updateProfile, fetchData } from '../actions';
-import history from '../history';
+import { signIn, signOut, updateProfile, fetchAuth } from '../actions';
 import './style/authStyle.css';
 class GoogleAuth extends React.Component {
     state = { re: false };
     componentDidMount() {
-        console.log('from did');
-        this.props.fetchData();
-        console.log(this.props);
+        this.props.fetchAuth();
     }
     onAuthChnage = isSignedIn => {};
 
     onSignInClick = () => {
         window.location.href = 'http://localhost:3030/api/auth/facebook';
-        this.props.signIn();
     };
     onSignOutClick = () => {};
     renderAuthButton() {
@@ -46,5 +42,5 @@ export default connect(mapStateToProps, {
     signIn,
     signOut,
     updateProfile,
-    fetchData
+    fetchAuth
 })(GoogleAuth);

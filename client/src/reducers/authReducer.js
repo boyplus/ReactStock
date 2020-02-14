@@ -3,7 +3,7 @@ import {
     SIGN_OUT,
     UPDATE_PROFILE,
     FETCH_PROFILE,
-    FETCH_DATA
+    FETCH_AUTH
 } from '../actions/types';
 const INITIAL_STATE = {
     isSignedIn: null,
@@ -14,7 +14,7 @@ export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case SIGN_IN:
             return { ...state, isSignedIn: true};
-        case FETCH_DATA:
+        case FETCH_AUTH:
             return { ...state, isSignedIn: true, userId: action.payload.id };
         case SIGN_OUT:
             return { ...state, isSignedIn: false, userId: null, profile: null };

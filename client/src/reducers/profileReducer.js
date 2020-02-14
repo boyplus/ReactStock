@@ -1,5 +1,5 @@
 import { UPDATE_MONEY, FETCH_USER } from '../actions/types';
-const INITIAL_STATE = { money: 1000 };
+const INITIAL_STATE = { money: 1000, login: null };
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case UPDATE_MONEY:
