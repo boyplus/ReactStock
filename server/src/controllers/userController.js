@@ -2,12 +2,12 @@ const knex = require('../../db/knex')
 
 const getUser = async (req, res) => {
 	try {
+		if (!req.user) return res.status(401).send({ err: 'Please login' })
 		const user = await knex
-			.select('name', 'email', 'fund')
+			.select('*')
 			.from('users')
-			.where('id', '1')
-		if (user.length == 0)
-			return res.status(404).send({ err: 'User not found' })
+			.where('id', req.user.id)
+		if (user.length == 0) res.status(404).send({ err: 'User not found' })
 		res.send(user[0])
 	} catch (err) {
 		console.log(err)

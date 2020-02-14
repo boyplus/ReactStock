@@ -1,18 +1,31 @@
 const passport = require('passport')
 const FacebookStrategy = require('passport-facebook').Strategy
 const knex = require('../../db/knex')
+require('dotenv').config()
 
 passport.use(
 	new FacebookStrategy(
 		{
-			clientID: '403004513727886',
-			clientSecret: 'ccfb0b01f501090cf89cc50534a3991a',
-			callbackURL: '/api/login/facebook/return',
+			clientID: process.env.FB_CLIENT_ID,
+			clientSecret: process.env.FB_CLIENT_SECRET,
+			callbackURL: '/api/auth/facebook/return',
 			profileFields: ['id', 'displayName', 'email'],
 		},
 		async function(accessToken, refreshToken, profile, done) {
 			const user = await knex('users')
-			return done(null, profile)
+				.select('*')
+				.where('id', profile.id)
+			if (user.length == 0) {
+				const prop = {
+					id: profile.id,
+					name: profile.displayName,
+					email: profile.emails[0].value,
+					fund: 50000,
+				}
+				await knex('users').insert(prop)
+				return done(null, prop)
+			}
+			return done(null, user[0])
 		}
 	)
 )

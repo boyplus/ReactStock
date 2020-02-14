@@ -5,12 +5,12 @@ require('../auth/facebook')
 const router = new express.Router()
 
 router.get(
-	'/api/login/facebook',
+	'/api/auth/facebook',
 	passport.authenticate('facebook', { scope: ['email'] })
 )
 
 router.get(
-	'/api/login/facebook/return',
+	'/api/auth/facebook/return',
 	passport.authenticate('facebook', {
 		session: true,
 		failureRedirect: '/',
