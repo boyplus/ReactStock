@@ -5,6 +5,6 @@ const router = new express.Router()
 
 router.get('/api/stocks', stockController.getAllStocks)
 
-router.post('/api/stocks', stockController.addNewStock)
+router.post('/api/stock', stockController.addNewStock)
 
 module.exports = router

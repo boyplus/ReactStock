@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 const userRouter = require('./routes/user')
 const stockRouter = require('./routes/stock')
 const authRouter = require('./routes/auth')
+const transactionRouter = require('./routes/transactions')
 
 const app = express()
 
@@ -36,5 +37,6 @@ app.use(passport.session())
 app.use(userRouter)
 app.use(stockRouter)
 app.use(authRouter)
+app.use(transactionRouter)
 
 module.exports = app

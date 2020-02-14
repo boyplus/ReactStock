@@ -17,6 +17,15 @@ const addNewStock = async (req, res) => {
 	}
 }
 
+// const getStock = async (req, res) => {
+// 	try {
+// 		const stockProp = req.body
+// 		const stock = await knex('stocks')
+// 			.select('name', 'price')
+// 			.where()
+// 	} catch (err) {}
+// }
+
 const getAllStocks = async (req, res) => {
 	try {
 		const stocks = await knex.select('*').from('stocks')

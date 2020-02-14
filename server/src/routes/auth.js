@@ -1,6 +1,5 @@
 const express = require('express')
 const passport = require('passport')
-const knex = require('../../db/knex')
 require('../auth/facebook')
 
 const router = new express.Router()
