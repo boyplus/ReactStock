@@ -60,19 +60,14 @@ const getAllStocks = async (req, res) => {
 
 const buyStock = async (req, res) => {
 	try {
-		// {
-		// 	stockID: 1,
-		// 	quantity: 10
-		// }
 		const orderProp = {
-			user_id: '1',
-			stock_id: res.body.stockID,
-			quantity: res.body.quantity,
+			user_id: req.user.id,
+			stock_id: req.body.stockID,
+			quantity: req.body.quantity,
 		}
 		const result = await findStock(req.body.stockID)
 		if (result.err) return res.status(404).send(result)
-
-		const existingStock = await knex('stocks')
+		const existingStock = await knex('stocks_owned')
 			.select('id', 'quantity')
 			.where('id', req.body.stockID)
 		if (existingStock.length == 0) {
