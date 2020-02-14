@@ -8,6 +8,10 @@ exports.seed = function(knex) {
 				{ name: 'Google', price: 100 },
 				{ name: 'Facebook', price: 50 },
 				{ name: 'Apple', price: 200.5 },
+				{ name: 'YouTube', price: 2007 },
+				{ name: 'Whatsapp', price: 9 },
+				{ name: 'Amazon', price: 2000 },
+				{ name: 'Twitter', price: 34 },
 			])
 		})
 }
