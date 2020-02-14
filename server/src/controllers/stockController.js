@@ -65,7 +65,7 @@ const buyStock = async (req, res) => {
 		// 	quantity: 10
 		// }
 		const orderProp = {
-			user_id: req.user.id,
+			user_id: '1',
 			stock_id: res.body.stockID,
 			quantity: res.body.quantity,
 		}
