@@ -32,7 +32,9 @@ class Stocks extends React.Component {
         return (
             <div>
                 <div className="ui header">Stocks list</div>
-                {this.renderListStocks(this.props.stocks)}
+                <div className="stockContainer">
+                    {this.renderListStocks(this.props.stocks)}
+                </div>
             </div>
         );
     }

@@ -10,12 +10,25 @@ const INITIAL_STATE = {
     userId: null,
     profile: null
 };
+//profile consists of name,email,fund
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case SIGN_IN:
-            return { ...state, isSignedIn: true};
+            return { ...state, isSignedIn: true };
         case FETCH_AUTH:
-            return { ...state, isSignedIn: true, userId: action.payload.id };
+            const profile = {
+                name: action.payload.name,
+                email: action.payload.email,
+                fund: action.payload.fund,
+                imageUrl:
+                    'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50'
+            };
+            return {
+                ...state,
+                isSignedIn: true,
+                userId: action.payload.id,
+                profile: profile
+            };
         case SIGN_OUT:
             return { ...state, isSignedIn: false, userId: null, profile: null };
         case UPDATE_PROFILE:
