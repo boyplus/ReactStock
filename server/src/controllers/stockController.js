@@ -65,11 +65,23 @@ const buyStock = async (req, res) => {
 			stock_id: req.body.stockID,
 			quantity: req.body.quantity,
 		}
-		const result = await findStock(req.body.stockID)
-		if (result.err) return res.status(404).send(result)
+		// Find stock if it exist
+		const stock = await findStock(orderProp.stock_id)
+		if (stock.err) return res.status(404).send(stock)
+
+		// Subtract the user's fund
+		const updatedFund = req.user.fund - orderProp.quantity * stock.price
+		await knex('users')
+			.update('fund', updatedFund)
+			.where('id', orderProp.user_id)
+
+		// Find if use alreay own the stock
 		const existingStock = await knex('stocks_owned')
 			.select('id', 'quantity')
-			.where('id', req.body.stockID)
+			.where({
+				stock_id: orderProp.stock_id,
+				user_id: orderProp.user_id,
+			})
 		if (existingStock.length == 0) {
 			await knex('stocks_owned').insert(orderProp)
 		} else {
@@ -83,6 +95,10 @@ const buyStock = async (req, res) => {
 					stock_id: orderProp.stock_id,
 				})
 		}
+		// Add order to the transaction table
+		orderProp.price = orderProp.quantity * stock.price
+		orderProp.created_at = knex.fn.now()
+		await knex('transactions').insert(orderProp)
 		return res.status(200).send({ success: true })
 	} catch (err) {
 		console.log(err)
