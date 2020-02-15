@@ -1,28 +1,14 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 @media screen and (max-width: 991px) {
     .listCards {
-        /* flex-wrap: wrap; */
-        
         grid-template-columns: auto auto !important;
     }
 }
 @media screen and (max-width: 600px) {
     .listCards {
         grid-template-columns: auto !important;
-        /* flex-wrap: wrap; */
-        /* justify-content: center; */
     }
 }
 .listCards {
     display: grid;
     grid-template-columns: auto auto auto;
-    background-color: thistle;
-}
-.stockContainer {
-    display: flex;
-    background-color: tomato;
 }

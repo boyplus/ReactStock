@@ -17,7 +17,6 @@ class Stocks extends React.Component {
         return <div className="listCards">{this.renderStocks(stocks)}</div>;
     };
     renderStocks = stocks => {
-        // stocks = [{ name: 'test1', price: 12, id: 23 }];
         const allStocks = stocks.map(stock => {
             return (
                 <Stock
