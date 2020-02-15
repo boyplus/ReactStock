@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { signIn, signOut, updateProfile, fetchAuth } from '../actions';
 import './style/authStyle.css';
 class GoogleAuth extends React.Component {
-    state = { re: false };
     componentDidMount() {
         this.props.fetchAuth();
     }

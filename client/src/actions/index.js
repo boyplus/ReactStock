@@ -8,8 +8,10 @@ import {
     FETCH_USER,
     FETCH_STOCKS,
     FETCH_PORTFOLIO,
-    FETCH_AUTH
+    FETCH_AUTH,
+    BUY_STOCK
 } from './types';
+import history from '../history';
 import stocks from '../apis/index';
 export const signIn = () => {
     return {
@@ -26,6 +28,17 @@ export const updateLogin = () => {
     return {
         type: 'UPDATE_LOGIN'
     };
+};
+export const buyStock = (stockID, quantity) => async dispatch => {
+    const response = await stocks.patch(
+        '/api/stock',
+        {
+            stockID: stockID,
+            quantity: quantity
+        },
+        { withCredentials: true }
+    );
+    history.push('/');
 };
 export const fetchAuth = () => async dispatch => {
     const response = await stocks.get('/api/user', { withCredentials: true });
@@ -71,7 +84,8 @@ export const fetchStocks = () => async dispatch => {
 };
 
 export const fetchPortfolio = () => async dispatch => {
-    const response = await stocks.get('/api/portfolio');
-    console.log(response.data);
+    const response = await stocks.get('/api/portfolio', {
+        withCredentials: true
+    });
     dispatch({ type: FETCH_PORTFOLIO, payload: response.data });
 };
