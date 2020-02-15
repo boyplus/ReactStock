@@ -4,6 +4,7 @@ exports.up = function(knex) {
 		table.string('name')
 		table.string('email')
 		table.decimal('fund', 19, 2)
+		table.string('profile_pic')
 	})
 }
 

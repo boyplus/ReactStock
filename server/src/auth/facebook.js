@@ -9,7 +9,12 @@ passport.use(
 			clientID: process.env.FB_CLIENT_ID,
 			clientSecret: process.env.FB_CLIENT_SECRET,
 			callbackURL: '/api/auth/facebook/return',
-			profileFields: ['id', 'displayName', 'email'],
+			profileFields: [
+				'id',
+				'displayName',
+				'email',
+				'picture.type(large)',
+			],
 		},
 		async (accessToken, refreshToken, profile, done) => {
 			const user = await knex('users')
@@ -21,6 +26,7 @@ passport.use(
 					name: profile.displayName,
 					email: profile.emails[0].value,
 					fund: 50000,
+					profile_pic: profile.photos[0].value,
 				}
 				await knex('users').insert(prop)
 				return done(null, prop)
