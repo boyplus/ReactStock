@@ -5,6 +5,7 @@ import GoogleAuth from './GoogleAuth';
 import ProfileHeader from './stocks/ProfileHeader';
 import Hamburger from './Hamburger';
 import Modal from './Modal';
+import { moneyToString } from './helperFunction';
 import './style/HeaderStyle.css';
 class Header extends React.Component {
     getClassName = className => {
@@ -28,7 +29,10 @@ class Header extends React.Component {
     renderMoney = () => {
         if (this.props.profile) {
             return (
-                <div className="myHeader money">{this.props.profile.fund}</div>
+                <div className="myHeader money">
+                    <i className="dollar sign icon"></i>
+                    {moneyToString(this.props.profile.fund)}
+                </div>
             );
         }
     };

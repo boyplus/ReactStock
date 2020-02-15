@@ -21,10 +21,6 @@ class Home extends React.Component {
             <div>
                 <div className="ui header">Welcome to React Stock</div>
                 {this.renderUser()}
-                <a href="http://localhost:3030/api/auth/facebook">facebook</a>
-                <button className="ui button" onClick={this.removeCookie}>
-                    log out
-                </button>
             </div>
         );
     }

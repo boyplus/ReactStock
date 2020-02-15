@@ -22,7 +22,7 @@ class Stocks extends React.Component {
             return (
                 <Stock
                     title={stock.name}
-                    description={'$ ' + stock.price}
+                    description={stock.price}
                     key={stock.id}
                 />
             );
