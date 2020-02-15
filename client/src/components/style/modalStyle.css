@@ -1,7 +1,7 @@
 @media screen and (max-width: 767px) {
     .content {
         width: 220px !important;
-        background-color: teal !important;
+        background-color: whitesmoke !important;
     }
 }
 .modal {
@@ -15,7 +15,24 @@
     background-color: rgba(0, 0, 0, 0.4);
 }
 .content {
-    width: 25%;
+    width: 400px;
     height: 100vh;
     background-color: whitesmoke;
+    padding: 20px;
+}
+.closeIcon{
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+}
+.menuHeader{
+    font-size: 40px !important;
+}
+#listMenu{
+    display: flex;
+    flex-direction: column;
+}
+.myMenu{
+    font-size: large;
+    padding: 15px 0;
 }

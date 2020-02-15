@@ -10,7 +10,6 @@ const INITIAL_STATE = {
     userId: null,
     profile: null
 };
-//profile consists of name,email,fund
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case SIGN_IN:
@@ -20,8 +19,7 @@ export default (state = INITIAL_STATE, action) => {
                 name: action.payload.name,
                 email: action.payload.email,
                 fund: action.payload.fund,
-                imageUrl:
-                    'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50'
+                imageUrl: action.payload.profile_pic
             };
             return {
                 ...state,
