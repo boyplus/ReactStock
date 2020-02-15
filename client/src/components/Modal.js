@@ -7,39 +7,43 @@ class Modal extends React.Component {
         super(props);
         this.state = { test: 'activeContent' };
     }
+    clickedLink = () => {
+        this.setState({ test: 'unactiveContent' });
+        this.props.onDisMiss();
+    };
     render() {
         return ReactDOM.createPortal(
             <div className="myContainer">
-                <div
-                    className="modal"
-                    onClick={() => {
-                        this.setState({ test: 'unactiveContent' });
-                        this.props.onDisMiss();
-                    }}
-                >
+                <div className="modal" onClick={this.clickedLink}>
                     <div
                         className={`content ${this.state.test}`}
                         onClick={e => e.stopPropagation()}
                     >
-                        <div
-                            className="closeIcon"
-                            onClick={() => {
-                                this.setState({ test: 'unactiveContent' });
-                                this.props.onDisMiss();
-                            }}
-                        >
+                        <div className="closeIcon" onClick={() => {}}>
                             <i className="close large icon closeIcon"></i>
                         </div>
 
                         <div className="ui large header menuHeader">Menu</div>
                         <div id="listMenu">
-                            <Link to="/" className="myMenu border">
+                            <Link
+                                onClick={this.clickedLink}
+                                to="/"
+                                className="myMenu border"
+                            >
                                 Home
                             </Link>
-                            <Link to="/stocks" className="myMenu border">
+                            <Link
+                                onClick={this.clickedLink}
+                                to="/stocks"
+                                className="myMenu border"
+                            >
                                 Stocks
                             </Link>
-                            <Link to="/portfolio" className="myMenu">
+                            <Link
+                                onClick={this.clickedLink}
+                                to="/portfolio"
+                                className="myMenu"
+                            >
                                 Portfilio
                             </Link>
                         </div>

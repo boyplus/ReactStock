@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 600px) {
     .myHeader {
         display: none;
     }

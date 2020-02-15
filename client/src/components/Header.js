@@ -34,12 +34,10 @@ class Header extends React.Component {
     };
     renderModal = () => {
         if (this.state.showModal) {
-            console.log('show');
             return (
                 <Modal
                     onDisMiss={() => {
                         setTimeout(() => {
-                            console.log('close menu');
                             this.setState({ showModal: !this.state.showModal });
                         }, 200);
                     }}

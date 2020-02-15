@@ -12,6 +12,7 @@ class GoogleAuth extends React.Component {
     };
     onSignOutClick = () => {
         console.log('signed out clicked');
+        window.location.href = 'http://localhost:3030/api/auth/logout';
     };
     renderAuthButton() {
         if (this.props.isSignedIn) {
