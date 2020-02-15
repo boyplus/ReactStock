@@ -17,6 +17,7 @@ class Stocks extends React.Component {
         return <div className="listCards">{this.renderStocks(stocks)}</div>;
     };
     renderStocks = stocks => {
+        // stocks = [{ name: 'test1', price: 12, id: 23 }];
         const allStocks = stocks.map(stock => {
             return (
                 <Stock
@@ -32,9 +33,7 @@ class Stocks extends React.Component {
         return (
             <div>
                 <div className="ui header">Stocks list</div>
-                <div className="stockContainer">
-                    {this.renderListStocks(this.props.stocks)}
-                </div>
+                {this.renderListStocks(this.props.stocks)}
             </div>
         );
     }
