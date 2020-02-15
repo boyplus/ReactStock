@@ -4,6 +4,7 @@ const session = require('express-session')
 const passport = require('passport')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
+const helmet = require('helmet')
 const userRouter = require('./routes/user')
 const stockRouter = require('./routes/stock')
 const authRouter = require('./routes/auth')
@@ -23,8 +24,11 @@ app.use(
 	cors({
 		origin: 'http://localhost:3000',
 		credentials: true,
+		methods: ['GET', 'POST', 'PATCH'],
+		// allowedHeaders: ['Content-Type', 'Authorization'],
 	})
 )
+app.use(helmet())
 app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(
@@ -39,9 +43,9 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
+app.use(authRouter)
 app.use(userRouter)
 app.use(stockRouter)
-app.use(authRouter)
 app.use(transactionRouter)
 
 module.exports = app
