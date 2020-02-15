@@ -1,15 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import history from '../../history';
-import { updateRoute, fetchStocks } from '../../actions';
+import { updateRoute, fetchStocks, fetchAuth } from '../../actions';
 import Stock from './Stock';
 import './style/stocksStyle.css';
 class Stocks extends React.Component {
     componentDidMount() {
-        if (this.props.profile) {
-            this.props.updateRoute(this.props.location.pathname);
-            this.props.fetchStocks();
-        } else {
+        this.props.updateRoute(this.props.location.pathname);
+        this.props.fetchStocks();
+    }
+    componentDidUpdate() {
+        if (!this.props.isSignedIn) {
             history.push('/');
         }
     }
@@ -40,11 +41,13 @@ class Stocks extends React.Component {
 
 const mapStateToProps = state => {
     return {
+        isSignedIn: state.auth.isSignedIn,
         profile: state.auth.profile,
         stocks: state.stocks
     };
 };
 export default connect(mapStateToProps, {
     updateRoute,
-    fetchStocks
+    fetchStocks,
+    fetchAuth
 })(Stocks);

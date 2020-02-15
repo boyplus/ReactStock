@@ -39,10 +39,9 @@ class Header extends React.Component {
                     onDisMiss={() =>
                         this.setState({ showModal: !this.state.showModal })
                     }
+                    myClass="active"
                 ></Modal>
             );
-        } else {
-            return null;
         }
     };
     constructor(props) {
@@ -103,7 +102,7 @@ class Header extends React.Component {
 const mapStateToProps = state => {
     return {
         route: state.route.route,
-        profile: state.auth.profile,
+        profile: state.auth.profile
     };
 };
 export default connect(mapStateToProps)(Header);
