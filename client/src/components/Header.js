@@ -28,7 +28,7 @@ class Header extends React.Component {
     renderMoney = () => {
         if (this.props.profile) {
             return (
-                <div className="myHeader money">{this.props.user.money}</div>
+                <div className="myHeader money">{this.props.profile.fund}</div>
             );
         }
     };
@@ -104,7 +104,6 @@ const mapStateToProps = state => {
     return {
         route: state.route.route,
         profile: state.auth.profile,
-        user: state.profile
     };
 };
 export default connect(mapStateToProps)(Header);

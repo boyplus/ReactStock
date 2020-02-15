@@ -7,26 +7,37 @@ class GoogleAuth extends React.Component {
     componentDidMount() {
         this.props.fetchAuth();
     }
-    onAuthChnage = isSignedIn => {};
-
     onSignInClick = () => {
         window.location.href = 'http://localhost:3030/api/auth/facebook';
     };
-    onSignOutClick = () => {};
+    onSignOutClick = () => {
+        console.log('signed out clicked');
+    };
     renderAuthButton() {
-        return (
-            <button
-                className="myButton"
-                onClick={this.onSignInClick}
-                style={{ color: 'whiteSmoke' }}
-            >
-                Signed In with facebook
-            </button>
-        );
+        console.log(this.props.data);
+        if (this.props.isSignedIn) {
+            return (
+                <button
+                    className="myButton"
+                    onClick={this.onSignOutClick}
+                    style={{ color: 'whiteSmoke' }}
+                >
+                    Signed Out
+                </button>
+            );
+        } else {
+            return (
+                <button
+                    className="myButton"
+                    onClick={this.onSignInClick}
+                    style={{ color: 'whiteSmoke' }}
+                >
+                    Signed In with facebook
+                </button>
+            );
+        }
     }
     render() {
-        console.log('from render');
-        console.log(this.props);
         return <div>{this.renderAuthButton()}</div>;
     }
 }

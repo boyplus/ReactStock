@@ -5,9 +5,6 @@ class Home extends React.Component {
     componentDidMount() {
         this.props.updateRoute(this.props.location.pathname);
     }
-    removeCookie = () => {
-        console.log(document.cookie);
-    };
     renderUser = () => {
         if (this.props.profile) {
             return (
