@@ -1,8 +1,11 @@
 const express = require('express')
 const passport = require('passport')
+const cors = require('cors')
 require('../auth/facebook')
 
 const router = new express.Router()
+
+router.options('*', cors())
 
 router.get(
 	'/api/auth/facebook',
