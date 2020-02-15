@@ -18,15 +18,28 @@
     height: 100vh;
     background-color: white;
     padding: 20px;
-    animation-name: example;
-    animation-duration: 500ms;
+    animation-duration: 200ms;
 }
-@keyframes example {
+.activeContent {
+    animation-name: animateIn;
+}
+.unactiveContent {
+    animation-name: animateOut;
+}
+@keyframes animateIn {
     from {
         transform: translateX(400px);
     }
     to {
         transform: translateX(0);
+    }
+}
+@keyframes animateOut {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(400px);
     }
 }
 .modalActive {

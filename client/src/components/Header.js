@@ -34,14 +34,20 @@ class Header extends React.Component {
     };
     renderModal = () => {
         if (this.state.showModal) {
+            console.log('show');
             return (
                 <Modal
-                    onDisMiss={() =>
-                        this.setState({ showModal: !this.state.showModal })
-                    }
-                    myClass="active"
+                    onDisMiss={() => {
+                        setTimeout(() => {
+                            console.log('close menu');
+                            this.setState({ showModal: !this.state.showModal });
+                        }, 200);
+                    }}
+                    myClass="activeContent"
                 ></Modal>
             );
+        } else {
+            return null;
         }
     };
     constructor(props) {
