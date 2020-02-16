@@ -1,14 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .card {
     background-color: whitesmoke;
     padding: 20px;
     margin: 20px;
-    height: 150px;
+    /* height: 150px; */
     border-radius: 10px 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     flex-wrap: wrap;
     box-shadow: 0 3px 3px -2px rgba(0, 0, 0, 0.2);
+}
+.top {
+    /* background-color: tomato; */
+}
+
+.stockHeader {
+    display: flex;
+    justify-content: space-between;
+    /* background-color: violet; */
+}
+.stockTitle{
+    font-size: large;
+    font-weight: bold;
+}
+.stockQuantity {
 }
 .button {
     display: flex;
@@ -33,6 +53,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* background-color: tomato; */
 }
 .stockForm {
     margin-right: 5px;

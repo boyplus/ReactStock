@@ -11,6 +11,7 @@ import Stock from './Stock';
 import './style/stocksStyle.css';
 class Stocks extends React.Component {
     componentDidMount() {
+        this.props.fetchAuth();
         this.props.updateRoute(this.props.location.pathname);
         this.props.fetchStocks();
         this.props.fetchPortfolio();
@@ -21,7 +22,11 @@ class Stocks extends React.Component {
         }
     }
     renderListStocks = stocks => {
-        return <div className="listCards">{this.renderStocks(stocks)}</div>;
+        if (this.props.isSignedIn) {
+            return <div className="listCards">{this.renderStocks(stocks)}</div>;
+        } else {
+            return null;
+        }
     };
     renderStocks = stocks => {
         const allStocks = stocks.map(stock => {
@@ -31,6 +36,7 @@ class Stocks extends React.Component {
                     description={stock.price}
                     id={stock.id}
                     key={stock.id}
+                    amount=""
                 />
             );
         });

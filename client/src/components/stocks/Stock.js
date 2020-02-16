@@ -13,7 +13,6 @@ class Stock extends React.Component {
                 this.props.buyStock(this.props.id, amount);
                 this.props.fetchPortfolio();
                 this.setState({ amount: '' });
-                console.log(this.state.amount);
             } else {
                 // console.log('cannot ');
             }
@@ -35,7 +34,11 @@ class Stock extends React.Component {
         return (
             <div className="card">
                 <div className="top">
-                    <div className="ui header">{this.props.title}</div>
+                    <div className="stockHeader">
+                        <div className="ui header">{this.props.title}</div>
+                        <div>{this.props.amount}</div>
+                    </div>
+
                     <div>
                         <i className="dollar sign icon"></i>
                         {moneyToString(this.props.description)}
