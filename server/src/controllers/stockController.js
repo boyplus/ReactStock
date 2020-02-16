@@ -5,7 +5,10 @@ const findStock = async stockID => {
 		const stock = await knex('stocks')
 			.select('*')
 			.where('id', stockID)
-		if (stock.length == 0) return { err: 'Not found' }
+		if (stock.length == 0)
+			return {
+				err: 'Not found',
+			}
 		return stock[0]
 	} catch (err) {
 		return err
@@ -99,11 +102,85 @@ const buyStock = async (req, res) => {
 		orderProp.price = orderProp.quantity * stock.price
 		orderProp.created_at = knex.fn.now()
 		await knex('transactions').insert(orderProp)
-		return res.status(200).send({ success: true })
+		return res.status(200).send({
+			success: true,
+		})
 	} catch (err) {
 		console.log(err)
 		res.status(500).send({
 			message: 'Error in buyStock function',
+			error: err,
+		})
+	}
+}
+
+const sellStock = async (req, res) => {
+	try {
+		const orderProp = {
+			user_id: req.user.id,
+			stock_id: req.body.stockID,
+			quantity: req.body.quantity,
+		}
+		// Find stock if it exist
+		const stock = await findStock(orderProp.stock_id)
+		if (stock.err) return res.status(404).send(stock)
+
+		// Check if user own the stock
+		const existingStock = await knex('stock_owned')
+			.select('*')
+			.where({
+				user_id: orderProp.user_id,
+				stock_id: orderProp.stock_id,
+			})
+		if (!existingStock.length) {
+			return res.status(404).send({
+				err: 'User does not own the stock',
+			})
+		}
+		// Check if user have enough stock to sell
+		if (existingStock[0].quantity < orderProp.quantity) {
+			return res.status(404).send({
+				err: 'User does not own enough stock quantity',
+			})
+		}
+
+		// if user sell all of his stock
+		if (existingStock[0].quantity == orderProp.quantity) {
+			await knex('stock_owned')
+				.delete()
+				.where({
+					user_id: orderProp.user_id,
+					stock_id: orderProp.stock_id,
+				})
+		} else {
+			await knex('stocks_owned')
+				.update(
+					'quantity',
+					existingStock[0].quantity - orderProp.quantity
+				)
+				.where({
+					user_id: orderProp.user_id,
+					stock_id: orderProp.stock_id,
+				})
+		}
+
+		// Add the user's fund
+		const updatedFund = req.user.fund + orderProp.quantity * stock.price
+		await knex('users')
+			.update('fund', updatedFund)
+			.where('id', orderProp.user_id)
+
+		// Add order to the transaction table
+		orderProp.price = orderProp.quantity * stock.price
+		orderProp.created_at = knex.fn.now()
+		await knex('transactions').insert(orderProp)
+		return res.status(200).send({
+			success: true,
+		})
+	} catch (err) {
+		console.log(err)
+		res.status(500).send({
+			message: 'Error in sellStock function',
 			error: err,
 		})
 	}
@@ -114,4 +191,5 @@ module.exports = {
 	addNewStock,
 	getStock,
 	buyStock,
+	sellStock,
 }
