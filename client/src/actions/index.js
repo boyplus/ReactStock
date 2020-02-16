@@ -42,6 +42,7 @@ export const fetchPortfolio = () => async dispatch => {
 };
 
 export const buyStock = (stockID, quantity) => async dispatch => {
+    console.log('in actions');
     await stocks.patch(
         '/api/stock',
         {

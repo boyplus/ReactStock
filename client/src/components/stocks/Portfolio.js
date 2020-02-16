@@ -21,7 +21,6 @@ class Portfolio extends React.Component {
             history.push('/');
         }
     }
-
     renderListStocks = stocks => {
         if (this.props.isSignedIn) {
             return <div className="listCards">{this.renderStocks(stocks)}</div>;
@@ -38,7 +37,7 @@ class Portfolio extends React.Component {
                     id={stock.name}
                     key={stock.name}
                     amount={stock.quantity}
-                    actions="buyStock"
+                    actions="sellStock"
                     actionName="Sell"
                     iconClass="minus icon"
                 />
