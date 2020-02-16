@@ -2,10 +2,19 @@ import React from 'react';
 import './style/stockStyle.css';
 import { moneyToString } from '../helperFunction';
 import { connect } from 'react-redux';
-import { buyStock, fetchPortfolio } from '../../actions';
+import { buyStock, fetchPortfolio, sellStock } from '../../actions';
 class Stock extends React.Component {
     state = { amount: '' };
-    sellStock = () => {};
+    sellStock = () => {
+        if (this.state.amount) {
+            const amount = parseInt(this.state.amount);
+            if (amount <= this.props.amount) {
+                this.props.sellStock(this.props.id, amount);
+                this.props.fetchPortfolio();
+                this.setState({ amount: '' });
+            }
+        }
+    };
     buyStock = () => {
         if (this.state.amount) {
             const amount = parseInt(this.state.amount);
@@ -14,15 +23,10 @@ class Stock extends React.Component {
                 this.props.buyStock(this.props.id, amount);
                 this.props.fetchPortfolio();
                 this.setState({ amount: '' });
-            } else {
-                // console.log('cannot ');
             }
-        } else {
-            // console.log('please input some value');
         }
     };
     checkActions = () => {
-        console.log('start checked');
         if (this.props.actions === 'buyStock') {
             this.buyStock();
         } else if (this.props.actions === 'sellStock') {
@@ -92,4 +96,8 @@ const mapStateToprops = state => {
         fund: state.auth.profile.fund
     };
 };
-export default connect(mapStateToprops, { buyStock, fetchPortfolio })(Stock);
+export default connect(mapStateToprops, {
+    buyStock,
+    fetchPortfolio,
+    sellStock
+})(Stock);

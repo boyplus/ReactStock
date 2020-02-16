@@ -34,8 +34,8 @@ class Portfolio extends React.Component {
                 <Stock
                     title={stock.name}
                     description={stock.price}
-                    id={stock.name}
-                    key={stock.name}
+                    id={stock.stock_id}
+                    key={stock.stock_id}
                     amount={stock.quantity}
                     actions="sellStock"
                     actionName="Sell"

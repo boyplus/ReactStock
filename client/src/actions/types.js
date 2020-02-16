@@ -9,3 +9,4 @@ export const FETCH_STOCKS = 'FETCH_STOCKS';
 export const FETCH_PORTFOLIO = 'FETCH_PORTFOLIO';
 export const FETCH_AUTH = 'FETCH_AUTH';
 export const BUY_STOCK = 'BUY_STOCK';
+export const SELL_STOCK = 'SELL_STOCK';
