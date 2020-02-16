@@ -21,7 +21,7 @@ const getPortfolio = async (req, res) => {
 	try {
 		const stockOwn = await knex
 			.sum('quantity as quantity')
-			.select('name', 'price')
+			.select('name', 'price', 'stock_id')
 			.from('stocks_owned')
 			.innerJoin('stocks', 'stocks.id', 'stocks_owned.stock_id')
 			.groupBy('stock_id')
