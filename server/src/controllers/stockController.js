@@ -126,7 +126,7 @@ const sellStock = async (req, res) => {
 		if (stock.err) return res.status(404).send(stock)
 
 		// Check if user own the stock
-		const existingStock = await knex('stock_owned')
+		const existingStock = await knex('stocks_owned')
 			.select('*')
 			.where({
 				user_id: orderProp.user_id,
@@ -139,14 +139,14 @@ const sellStock = async (req, res) => {
 		}
 		// Check if user have enough stock to sell
 		if (existingStock[0].quantity < orderProp.quantity) {
-			return res.status(404).send({
+			return res.status(406).send({
 				err: 'User does not own enough stock quantity',
 			})
 		}
 
 		// if user sell all of his stock
 		if (existingStock[0].quantity == orderProp.quantity) {
-			await knex('stock_owned')
+			await knex('stocks_owned')
 				.delete()
 				.where({
 					user_id: orderProp.user_id,
