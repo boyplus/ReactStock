@@ -7,29 +7,52 @@ import {
     fetchAuth,
     fetchStocks
 } from '../../actions';
+import Stock from './Stock';
+import './style/stocksStyle.css';
 class Portfolio extends React.Component {
     componentDidMount() {
         this.props.fetchAuth();
         this.props.fetchStocks();
+        this.props.updateRoute(this.props.location.pathname);
+        this.props.fetchPortfolio();
     }
     componentDidUpdate() {
         if (!this.props.isSignedIn) {
             history.push('/');
-        } else {
-            this.props.updateRoute(this.props.location.pathname);
-            this.props.fetchPortfolio();
         }
     }
-    render() {
+
+    renderListStocks = stocks => {
         if (this.props.isSignedIn) {
-            return (
-                <div>
-                    <div className="ui header">Portfolio</div>
-                </div>
-            );
+            return <div className="listCards">{this.renderStocks(stocks)}</div>;
         } else {
-            return <div>Please signin</div>;
+            return null;
         }
+    };
+    renderStocks = stocks => {
+        const allStocks = stocks.map(stock => {
+            return (
+                <Stock
+                    title={stock.name}
+                    description={stock.price}
+                    id={stock.name}
+                    key={stock.name}
+                    amount={stock.quantity}
+                    actions="buyStock"
+                    actionName="Sell"
+                    iconClass="minus icon"
+                />
+            );
+        });
+        return allStocks;
+    };
+    render() {
+        return (
+            <div>
+                <div className="ui header">Portfolio</div>
+                {this.renderListStocks(this.props.port)}
+            </div>
+        );
     }
 }
 

@@ -5,8 +5,10 @@ import { connect } from 'react-redux';
 import { buyStock, fetchPortfolio } from '../../actions';
 class Stock extends React.Component {
     state = { amount: '' };
+    sellStock = () => {};
     buyStock = () => {
         if (this.state.amount) {
+            console.log('start buy stock');
             const amount = parseInt(this.state.amount);
             const price = parseInt(this.props.description) * amount;
             if (price <= this.props.fund) {
@@ -20,6 +22,15 @@ class Stock extends React.Component {
             // console.log('please input some value');
         }
     };
+    checkActions = () => {
+        console.log('start checked');
+        if (this.props.actions === 'buyStock') {
+            this.props.buyStock();
+        } else if (this.props.actions === 'sellStock') {
+            this.props.sellStock();
+        }
+    };
+
     buyClicked = () => {
         this.buyStock();
     };
@@ -28,7 +39,7 @@ class Stock extends React.Component {
     };
     onFormSubmit = event => {
         event.preventDefault();
-        this.buyStock();
+        this.checkActions();
     };
     render() {
         return (
@@ -58,9 +69,9 @@ class Stock extends React.Component {
                             ></input>
                         </div>
                     </form>
-                    <button className="button" onClick={this.buyClicked}>
-                        <i className="icon plus"></i>
-                        Buy
+                    <button className="button" onClick={this.checkActions}>
+                        <i className={this.props.iconClass}></i>
+                        {this.props.actionName}
                     </button>
                 </div>
             </div>

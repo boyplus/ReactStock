@@ -37,6 +37,9 @@ class Stocks extends React.Component {
                     id={stock.id}
                     key={stock.id}
                     amount=""
+                    actions="buyStock"
+                    actionName="Buy"
+                    iconClass="plus icon"
                 />
             );
         });
