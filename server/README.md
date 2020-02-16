@@ -21,6 +21,10 @@ yarn --prod
 > CLIENT_URL -> URL to the frontend
 >
 > PORT -> The specific port for express. Default is 3030
+>
+> DB_USER -> MySQL database username
+>
+> DB_PASSWORD -> MySQL database password
 
 Using in development environment
 
