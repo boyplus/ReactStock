@@ -6,26 +6,20 @@ import { buyStock, fetchPortfolio } from '../../actions';
 class Stock extends React.Component {
     state = { amount: '' };
     buyStock = () => {
-        console.log('amount');
-        console.log(this.state.amount);
         if (this.state.amount) {
-            console.log('start buy stock');
             const amount = parseInt(this.state.amount);
             const price = parseInt(this.props.description) * amount;
-            console.log(price);
             if (price <= this.props.fund) {
-                console.log('you can buy');
                 this.props.buyStock(this.props.id, amount);
                 this.props.fetchPortfolio();
             } else {
-                console.log('cannot ');
+                // console.log('cannot ');
             }
         } else {
-            console.log('please input some value');
+            // console.log('please input some value');
         }
     };
     buyClicked = () => {
-        console.log('clicked');
         this.buyStock();
     };
     onInputChange = event => {

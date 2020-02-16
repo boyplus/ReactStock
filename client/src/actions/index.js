@@ -29,6 +29,20 @@ export const updateLogin = () => {
         type: 'UPDATE_LOGIN'
     };
 };
+export const fetchProfile = () => {
+    return {
+        type: FETCH_PROFILE
+    };
+};
+export const fetchPortfolio = () => async dispatch => {
+    const response = await stocks.get('/api/portfolio', {
+        withCredentials: true
+    });
+    // console.log('from port');
+    // console.log(response.data);
+    dispatch({ type: FETCH_PORTFOLIO, payload: response.data });
+};
+
 export const buyStock = (stockID, quantity) => async dispatch => {
     const response = await stocks.patch(
         '/api/stock',
@@ -38,8 +52,12 @@ export const buyStock = (stockID, quantity) => async dispatch => {
         },
         { withCredentials: true }
     );
-    dispatch({ type: BUY_STOCK, payload: response.data });
-    history.push('/stocks');
+    const test = await stocks.get('/api/portfolio', {
+        withCredentials: true
+    });
+    dispatch({ type: FETCH_PORTFOLIO, payload: test.data });
+    const test2 = await stocks.get('/api/user', { withCredentials: true });
+    dispatch({ type: FETCH_AUTH, payload: test2.data });
 };
 export const fetchAuth = () => async dispatch => {
     const response = await stocks.get('/api/user', { withCredentials: true });
@@ -66,12 +84,6 @@ export const fetchUser = () => {
     };
 };
 
-export const fetchProfile = () => {
-    return {
-        type: FETCH_PROFILE
-    };
-};
-
 export const updateRoute = route => {
     return {
         type: UPDATE_ROUTE,
@@ -82,11 +94,4 @@ export const updateRoute = route => {
 export const fetchStocks = () => async dispatch => {
     const response = await stocks.get('/api/stocks');
     dispatch({ type: FETCH_STOCKS, payload: response.data });
-};
-
-export const fetchPortfolio = () => async dispatch => {
-    const response = await stocks.get('/api/portfolio', {
-        withCredentials: true
-    });
-    dispatch({ type: FETCH_PORTFOLIO, payload: response.data });
 };

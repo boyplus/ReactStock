@@ -4,7 +4,6 @@ import { signIn, signOut, updateProfile, fetchAuth } from '../actions';
 import './style/authStyle.css';
 class GoogleAuth extends React.Component {
     componentDidMount() {
-        console.log('from did');
         this.props.fetchAuth();
     }
     onSignInClick = () => {
@@ -38,8 +37,8 @@ class GoogleAuth extends React.Component {
         }
     }
     render() {
-        console.log('render');
-        console.log(this.props.data);
+        // console.log('render');
+        // console.log(this.props.data);
         return <div>{this.renderAuthButton()}</div>;
     }
 }
