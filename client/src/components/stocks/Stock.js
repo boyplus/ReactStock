@@ -8,7 +8,6 @@ class Stock extends React.Component {
     sellStock = () => {};
     buyStock = () => {
         if (this.state.amount) {
-            console.log('start buy stock');
             const amount = parseInt(this.state.amount);
             const price = parseInt(this.props.description) * amount;
             if (price <= this.props.fund) {
@@ -25,9 +24,9 @@ class Stock extends React.Component {
     checkActions = () => {
         console.log('start checked');
         if (this.props.actions === 'buyStock') {
-            this.props.buyStock();
+            this.buyStock();
         } else if (this.props.actions === 'sellStock') {
-            this.props.sellStock();
+            this.sellStock();
         }
     };
 
