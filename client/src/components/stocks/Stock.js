@@ -12,6 +12,8 @@ class Stock extends React.Component {
             if (price <= this.props.fund) {
                 this.props.buyStock(this.props.id, amount);
                 this.props.fetchPortfolio();
+                this.setState({ amount: '' });
+                console.log(this.state.amount);
             } else {
                 // console.log('cannot ');
             }
@@ -49,6 +51,7 @@ class Stock extends React.Component {
                                 type="text"
                                 placeholder="Quantity"
                                 onChange={this.onInputChange}
+                                value={this.state.amount}
                             ></input>
                         </div>
                     </form>

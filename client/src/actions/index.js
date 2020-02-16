@@ -38,13 +38,11 @@ export const fetchPortfolio = () => async dispatch => {
     const response = await stocks.get('/api/portfolio', {
         withCredentials: true
     });
-    // console.log('from port');
-    // console.log(response.data);
     dispatch({ type: FETCH_PORTFOLIO, payload: response.data });
 };
 
 export const buyStock = (stockID, quantity) => async dispatch => {
-    const response = await stocks.patch(
+    await stocks.patch(
         '/api/stock',
         {
             stockID: stockID,
@@ -52,12 +50,8 @@ export const buyStock = (stockID, quantity) => async dispatch => {
         },
         { withCredentials: true }
     );
-    const test = await stocks.get('/api/portfolio', {
-        withCredentials: true
-    });
-    dispatch({ type: FETCH_PORTFOLIO, payload: test.data });
-    const test2 = await stocks.get('/api/user', { withCredentials: true });
-    dispatch({ type: FETCH_AUTH, payload: test2.data });
+    const response = await stocks.get('/api/user', { withCredentials: true });
+    dispatch({ type: FETCH_AUTH, payload: response.data });
 };
 export const fetchAuth = () => async dispatch => {
     const response = await stocks.get('/api/user', { withCredentials: true });
