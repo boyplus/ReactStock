@@ -33,8 +33,17 @@ class Stock extends React.Component {
     buyClicked = () => {
         this.buyStock();
     };
+    checkInput = str => {
+        for (let i = 0; i < str.length; i++)
+            if (str[i] < '0' || str[i] > '9' || str[0] === '0') return false;
+        return true;
+    };
     onInputChange = event => {
-        this.setState({ amount: event.target.value });
+        if (this.checkInput(event.target.value)) {
+            this.setState({ amount: event.target.value });
+        } else {
+            this.setState({ amount: '' });
+        }
     };
     onFormSubmit = event => {
         event.preventDefault();
