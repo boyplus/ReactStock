@@ -38,7 +38,8 @@ export const buyStock = (stockID, quantity) => async dispatch => {
         },
         { withCredentials: true }
     );
-    history.push('/');
+    dispatch({ type: BUY_STOCK, payload: response.data });
+    history.push('/stocks');
 };
 export const fetchAuth = () => async dispatch => {
     const response = await stocks.get('/api/user', { withCredentials: true });

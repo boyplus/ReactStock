@@ -1,13 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import history from '../../history';
-import { updateRoute, fetchStocks, fetchAuth } from '../../actions';
+import {
+    updateRoute,
+    fetchStocks,
+    fetchAuth,
+    fetchPortfolio
+} from '../../actions';
 import Stock from './Stock';
 import './style/stocksStyle.css';
 class Stocks extends React.Component {
     componentDidMount() {
         this.props.updateRoute(this.props.location.pathname);
         this.props.fetchStocks();
+        this.props.fetchPortfolio();
     }
     componentDidUpdate() {
         if (!this.props.isSignedIn) {
@@ -50,5 +56,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
     updateRoute,
     fetchStocks,
-    fetchAuth
+    fetchAuth,
+    fetchPortfolio
 })(Stocks);

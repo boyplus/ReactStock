@@ -5,6 +5,7 @@ class Home extends React.Component {
     componentDidMount() {
         this.props.updateRoute(this.props.location.pathname);
     }
+    componentDidUpdate() {}
     renderUser = () => {
         if (this.props.profile) {
             return (

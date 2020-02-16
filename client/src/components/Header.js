@@ -6,6 +6,7 @@ import ProfileHeader from './stocks/ProfileHeader';
 import Hamburger from './Hamburger';
 import Modal from './Modal';
 import { moneyToString } from './helperFunction';
+import { fetchAuth } from '../actions';
 import './style/HeaderStyle.css';
 class Header extends React.Component {
     getClassName = className => {
@@ -113,4 +114,4 @@ const mapStateToProps = state => {
         profile: state.auth.profile
     };
 };
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, { fetchAuth })(Header);

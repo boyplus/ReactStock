@@ -2,30 +2,38 @@ import React from 'react';
 import './style/stockStyle.css';
 import { moneyToString } from '../helperFunction';
 import { connect } from 'react-redux';
-import { buyStock } from '../../actions';
+import { buyStock, fetchPortfolio } from '../../actions';
 class Stock extends React.Component {
     state = { amount: '' };
-    buyClicked = () => {
-        console.log('clicked');
-    };
-    onInputChange = event => {
-        this.setState({ amount: event.target.value });
-    };
-    onFormSubmit = event => {
-        event.preventDefault();
+    buyStock = () => {
+        console.log('amount');
+        console.log(this.state.amount);
         if (this.state.amount) {
+            console.log('start buy stock');
             const amount = parseInt(this.state.amount);
             const price = parseInt(this.props.description) * amount;
             console.log(price);
             if (price <= this.props.fund) {
                 console.log('you can buy');
                 this.props.buyStock(this.props.id, amount);
+                this.props.fetchPortfolio();
             } else {
                 console.log('cannot ');
             }
         } else {
             console.log('please input some value');
         }
+    };
+    buyClicked = () => {
+        console.log('clicked');
+        this.buyStock();
+    };
+    onInputChange = event => {
+        this.setState({ amount: event.target.value });
+    };
+    onFormSubmit = event => {
+        event.preventDefault();
+        this.buyStock();
     };
     render() {
         return (
@@ -45,7 +53,7 @@ class Stock extends React.Component {
                         <div className="field">
                             <input
                                 type="text"
-                                placeholder="Quality"
+                                placeholder="Quantity"
                                 onChange={this.onInputChange}
                             ></input>
                         </div>
@@ -65,4 +73,4 @@ const mapStateToprops = state => {
         fund: state.auth.profile.fund
     };
 };
-export default connect(mapStateToprops, { buyStock })(Stock);
+export default connect(mapStateToprops, { buyStock, fetchPortfolio })(Stock);

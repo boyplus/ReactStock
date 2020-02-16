@@ -1,20 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import history from '../../history';
-import { updateRoute, fetchPortfolio } from '../../actions';
+import { updateRoute, fetchPortfolio, fetchAuth } from '../../actions';
 class Portfolio extends React.Component {
     componentDidMount() {
-        if (this.props.profile) {
-            this.props.fetchAuth();
-            this.props.updateRoute(this.props.location.pathname);
-            this.props.fetchPortfolio();
-            console.log(this.props);
-        } else {
+        this.props.fetchAuth();
+        this.props.updateRoute(this.props.location.pathname);
+        this.props.fetchPortfolio();
+    }
+    componentDidUpdate() {
+        if (!this.props.isSignedIn) {
             history.push('/');
         }
     }
     render() {
-        console.log(this.props);
+        console.log(this.props.port);
         return (
             <div>
                 <div className="ui header">Portfolio</div>
@@ -25,10 +25,13 @@ class Portfolio extends React.Component {
 
 const mapStateToProps = state => {
     return {
+        isSignedIn: state.auth.isSignedIn,
         profile: state.auth.profile,
         port: state.port
     };
 };
-export default connect(mapStateToProps, { updateRoute, fetchPortfolio })(
-    Portfolio
-);
+export default connect(mapStateToProps, {
+    updateRoute,
+    fetchPortfolio,
+    fetchAuth
+})(Portfolio);
