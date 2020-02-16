@@ -89,6 +89,19 @@ node ./build/main.js
 > 	"quantity": <Integer>
 > }
 > ```
+>
+> AUTH PUT /api/stock -> Sell the stock. User will come from cookie data
+>
+> RETURN: SUCCESS 200 Status code and { success: true }
+> FAILED 404 if stock is not existing or user doesn't own the stock
+> FAILED 406 if user doesn't own enough stock to sell
+>
+> ```json
+> {
+> 	"stockID":  <Integer>,
+> 	"quantity": <Integer>
+> }
+> ```
 
 ### Transactions Routes
 
