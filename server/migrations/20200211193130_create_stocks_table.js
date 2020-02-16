@@ -4,8 +4,8 @@ exports.up = function(knex) {
 			.increments('id')
 			.primary()
 			.unsigned()
-		table.string('name')
-		table.decimal('price', 8, 2)
+		table.string('name').notNullable()
+		table.decimal('price', 8, 2).notNullable()
 	})
 }
 

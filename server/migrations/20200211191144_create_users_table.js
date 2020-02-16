@@ -3,7 +3,7 @@ exports.up = function(knex) {
 		table.string('id').primary()
 		table.string('name')
 		table.string('email')
-		table.decimal('fund', 19, 2)
+		table.decimal('fund', 19, 2).notNullable()
 		table.string('profile_pic')
 	})
 }
