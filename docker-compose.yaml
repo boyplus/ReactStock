@@ -1,0 +1,33 @@
+version: '3'
+services:
+    client:
+        build:
+            context: ./client
+        restart: always
+        depends_on:
+            - server
+        ports:
+            - 3000:80
+    server:
+        build:
+            context: ./server
+        restart: always
+        depends_on:
+            - mysql
+        environment:
+            - FB_CLIENT_ID=1182499288808470
+            - FB_CLIENT_SECRET=dc4cbc167e9b641fa03b53dc03041b60
+            - CLIENT_URL=http://client
+            - PORT=3030
+            - NODE_ENV=production
+            - DB_USER=root
+            - DB_PASSWORD=password
+            - DB_HOST=mysql
+        ports:
+            - 3030:3030
+    mysql:
+        image: 'mysql:latest'
+        restart: always
+        environment:
+            - MYSQL_ROOT_PASSWORD=password
+            - MYSQL_DATABASE=react_stock
