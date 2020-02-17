@@ -3,7 +3,6 @@ exports.up = function(knex) {
 		table
 			.increments('id')
 			.primary()
-			.unsigned()
 		table.string('user_id').notNullable()
 		table.integer('stock_id').notNullable()
 		table.integer('quantity').notNullable()

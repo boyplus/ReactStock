@@ -22,6 +22,8 @@ yarn --prod
 >
 > PORT -> The specific port for express. Default is 3030
 >
+> DB_HOST -> MySQL host
+>
 > DB_USER -> MySQL database username
 >
 > DB_PASSWORD -> MySQL database password
