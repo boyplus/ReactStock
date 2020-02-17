@@ -100,6 +100,7 @@ const buyStock = async (req, res) => {
 		}
 		// Add order to the transaction table
 		orderProp.price = orderProp.quantity * stock.price
+		orderProp.buying = true
 		orderProp.created_at = knex.fn.now()
 		await knex('transactions').insert(orderProp)
 		return res.status(200).send({
@@ -172,6 +173,7 @@ const sellStock = async (req, res) => {
 
 		// Add order to the transaction table
 		orderProp.price = orderProp.quantity * stock.price
+		orderProp.buying = false
 		orderProp.created_at = knex.fn.now()
 		await knex('transactions').insert(orderProp)
 		return res.status(200).send({

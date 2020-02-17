@@ -5,7 +5,11 @@ exports.up = function(knex) {
 			.primary()
 			.unsigned()
 		table.string('user_id').notNullable()
-		table.integer('stock_id').notNullable()
+		table.boolean('buying')
+		table
+			.integer('stock_id')
+			.notNullable()
+			.unsigned()
 		table.decimal('price', 19, 2).notNullable()
 		table.integer('quantity').notNullable()
 		table.timestamp('created_at').defaultTo(knex.fn.now())

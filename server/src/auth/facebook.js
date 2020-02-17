@@ -8,7 +8,7 @@ passport.use(
 		{
 			clientID: process.env.FB_CLIENT_ID,
 			clientSecret: process.env.FB_CLIENT_SECRET,
-			callbackURL: '/api/auth/facebook/return',
+			callbackURL: process.env.NODE_ENV == "production" ? 'https://stock.cscms.me/api/auth/facebook/return':  '/api/auth/facebook/return',
 			profileFields: [
 				'id',
 				'displayName',
