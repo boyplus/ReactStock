@@ -22,7 +22,7 @@ passport.deserializeUser((obj, cb) => {
 
 app.use(
 	cors({
-		origin: ['http://localhost:3000', 'http://13.67.62.82/'],
+		origin: ['http://localhost:3000', 'http://13.67.62.82'],
 		credentials: true,
 		methods: ['GET', 'POST', 'PUT', 'PATCH'],
 		// allowedHeaders: ['Content-Type', 'Authorization'],
