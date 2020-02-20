@@ -2,10 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { signIn, signOut, updateProfile, fetchAuth } from '../actions';
 import './style/authStyle.css';
-require('dotenv').config()
+require('dotenv').config();
 class GoogleAuth extends React.Component {
-    componentDidMount() {
-        this.props.fetchAuth();
+    async componentDidMount(){
+        await this.props.fetchAuth();
+        console.log('from googleAuth');
+        console.log(this.props.isSignedIn);
     }
     onSignInClick = () => {
         window.location.href = `${process.env.REACT_APP_SERVER_URL}/api/auth/facebook`;

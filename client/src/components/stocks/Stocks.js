@@ -11,7 +11,8 @@ import Stock from './Stock';
 import './style/stocksStyle.css';
 class Stocks extends React.Component {
     componentDidMount() {
-        this.props.fetchAuth();
+        console.log('from did');
+        console.log(this.props.isSignedIn);
         this.props.updateRoute(this.props.location.pathname);
         this.props.fetchStocks();
         this.props.fetchPortfolio();
@@ -56,6 +57,8 @@ class Stocks extends React.Component {
 }
 
 const mapStateToProps = state => {
+    console.log('from state');
+    console.log(state.auth.isSignedIn);
     return {
         isSignedIn: state.auth.isSignedIn,
         profile: state.auth.profile,

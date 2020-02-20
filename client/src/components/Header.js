@@ -53,6 +53,13 @@ class Header extends React.Component {
             return null;
         }
     };
+    getRoute = route => {
+        if (this.props.isSignedIn) {
+            return route;
+        } else {
+            return '/';
+        }
+    };
     constructor(props) {
         super(props);
         this.state = { showModal: false };
@@ -71,17 +78,20 @@ class Header extends React.Component {
                 <div className="largeNav">
                     <div className="nav">
                         <div className="leftMenu">
-                            <Link to="/" className={this.getClassName('')}>
+                            <Link
+                                to={this.getRoute('/')}
+                                className={this.getClassName('')}
+                            >
                                 Home
                             </Link>
                             <Link
-                                to="/stocks"
+                                to={this.getRoute('/stocks')}
                                 className={this.getClassName('stocks')}
                             >
                                 Stocks
                             </Link>
                             <Link
-                                to="/portfolio"
+                                to={this.getRoute('/portfolio')}
                                 className={this.getClassName('portfolio')}
                             >
                                 Portfolio
@@ -110,6 +120,7 @@ class Header extends React.Component {
 
 const mapStateToProps = state => {
     return {
+        isSignedIn: state.auth.isSignedIn,
         route: state.route.route,
         profile: state.auth.profile
     };

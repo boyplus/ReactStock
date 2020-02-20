@@ -72,7 +72,9 @@ export const buyStock = (stockID, quantity) => async dispatch => {
     dispatch({ type: FETCH_AUTH, payload: response.data });
 };
 export const fetchAuth = () => async dispatch => {
-    const response = await stocks.get('/api/user', { withCredentials: true });
+    const response = await stocks.get('/api/user', {
+        withCredentials: true
+    });
     dispatch({ type: FETCH_AUTH, payload: response.data });
 };
 
